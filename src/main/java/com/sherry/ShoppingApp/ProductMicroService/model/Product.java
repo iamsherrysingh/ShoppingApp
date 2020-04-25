@@ -9,7 +9,7 @@ public class Product {
 
     @Id
     @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
     @Column(name="product_name")
@@ -19,14 +19,14 @@ public class Product {
     String productDescription;
 
     @Column(name="product_image")
-    byte[] productImage;
+    String productImage;
 
     @Column(name="price")
     double price;
 
     public Product(){}
 
-    public Product(String productName, String productDescription, byte[] productImage, double price) {
+    public Product(String productName, String productDescription, String productImage, double price) {
         this.productName = productName;
         this.productDescription = productDescription;
         this.productImage = productImage;
@@ -45,7 +45,7 @@ public class Product {
         return productDescription;
     }
 
-    public byte[] getProductImage() {
+    public String getProductImage() {
         return productImage;
     }
 
@@ -59,7 +59,7 @@ public class Product {
                 "id=" + id +
                 ", productName='" + productName + '\'' +
                 ", productDescription='" + productDescription + '\'' +
-                ", productImage=" + Arrays.toString(productImage) +
+                ", productImage=" + productImage +
                 ", price=" + price +
                 '}';
     }
