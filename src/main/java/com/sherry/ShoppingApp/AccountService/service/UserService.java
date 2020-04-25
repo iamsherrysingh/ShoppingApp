@@ -1,5 +1,9 @@
 package com.sherry.ShoppingApp.AccountService.service;
 
+import com.sherry.ShoppingApp.AccountService.model.User;
+
+import java.util.List;
+
 public interface UserService {
     /**
      *checks if the userName and password combo is correct
@@ -10,4 +14,9 @@ public interface UserService {
      * @return false if the userName and password combo is not correct
      */
     boolean checkUserNameAndPassword(String userName, String password);
+
+    public List<User> listUsers();
+
+    public User getUserByUserName(String userName);
+
 }
