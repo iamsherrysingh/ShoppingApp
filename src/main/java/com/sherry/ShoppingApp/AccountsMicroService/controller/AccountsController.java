@@ -1,14 +1,14 @@
-package com.sherry.ShoppingApp.AccountService.controller;
+package com.sherry.ShoppingApp.AccountsMicroService.controller;
 
-import com.sherry.ShoppingApp.AccountService.model.User;
-import com.sherry.ShoppingApp.AccountService.service.UserService;
+import com.sherry.ShoppingApp.AccountsMicroService.model.User;
+import com.sherry.ShoppingApp.AccountsMicroService.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/accounts")
-public class AccountController {
+public class AccountsController {
 
     @Autowired
     UserService userService;

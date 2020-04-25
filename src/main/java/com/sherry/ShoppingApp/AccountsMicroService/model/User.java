@@ -1,4 +1,4 @@
-package com.sherry.ShoppingApp.AccountService.model;
+package com.sherry.ShoppingApp.AccountsMicroService.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
