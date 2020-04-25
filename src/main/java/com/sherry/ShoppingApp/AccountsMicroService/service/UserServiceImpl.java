@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> listUsers() {
+    public List<User> getUsers() {
         List<User> users= userDAO.findAll();
         users.forEach(System.out::println);
         return users;
@@ -44,10 +44,19 @@ public class UserServiceImpl implements UserService {
     public User getUserByUserName(String userName) {
         Optional<User> user= userDAO.findById(userName);
         if(user.isPresent()){
-            System.out.println(user.get());
             return user.get();
+        }else {
+            return new User();
         }
-        System.out.println("NO USER FOUND with name "+ userName);
-        return new User();
+    }
+
+    @Override
+    public void addUser(User user) {
+        userDAO.save(user);
+    }
+
+    @Override
+    public void deleteUser(String userName) {
+        userDAO.delete(getUserByUserName(userName));
     }
 }

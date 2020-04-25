@@ -15,8 +15,12 @@ public interface UserService {
      */
     boolean checkUserNameAndPassword(String userName, String password);
 
-    public List<User> listUsers();
+    public List<User> getUsers();
 
     public User getUserByUserName(String userName);
+
+    public void addUser(User user);
+
+    public void deleteUser(String userName);
 
 }

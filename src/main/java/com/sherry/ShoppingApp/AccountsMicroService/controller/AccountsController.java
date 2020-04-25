@@ -15,7 +15,7 @@ public class AccountsController {
 
     @GetMapping("/users")
     public List<User> listUsers() {
-        return userService.listUsers();
+        return userService.getUsers();
     }
 
     /*
@@ -32,5 +32,15 @@ public class AccountsController {
     @GetMapping("/check")
     public boolean checkUserNameAndPassword(@RequestParam("userName") String userName,@RequestParam("password") String password){
         return userService.checkUserNameAndPassword(userName, password);
+    }
+
+    @PostMapping("/user")
+    public void addUser(@RequestBody User user){
+        userService.addUser(user);
+    }
+
+    @DeleteMapping("/user/{userName}")
+    public void deleteUser(@PathVariable String userName){
+        userService.deleteUser(userName);
     }
 }
