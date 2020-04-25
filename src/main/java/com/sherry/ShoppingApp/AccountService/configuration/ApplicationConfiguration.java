@@ -21,10 +21,5 @@ import javax.persistence.EntityManagerFactory;
 @PropertySource({ "classpath:application.properties" })
 public class ApplicationConfiguration {
 
-    @Bean
-    UserService userService(){
-        return new UserServiceImpl();
-    }
-
 
 }
