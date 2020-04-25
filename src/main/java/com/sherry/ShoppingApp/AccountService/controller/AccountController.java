@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/accounts")
-public class UserController {
+public class AccountController {
 
     @Autowired
     UserService userService;

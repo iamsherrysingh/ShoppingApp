@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan(basePackages = {"com.sherry.ShoppingApp.AccountService"})
-@PropertySource({ "classpath:application.properties" })
+@PropertySource({"classpath:AccountServiceApplication.properties"})
 public class ApplicationConfiguration {
 
 
