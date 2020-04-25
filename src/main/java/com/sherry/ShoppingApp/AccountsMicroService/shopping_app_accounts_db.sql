@@ -1,5 +1,5 @@
-SHOW DATABASES;
-USE shopping_app_db;
+CREATE database shopping_app_accounts_db;
+USE shopping_app_accounts_db;
 DROP TABLE if exists user;
 SHOW TABLES;
 CREATE TABLE user (

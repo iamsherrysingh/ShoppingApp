@@ -1,6 +1,6 @@
-package com.sherry.ShoppingApp.AccountService.dao;
+package com.sherry.ShoppingApp.AccountsMicroService.dao;
 
-import com.sherry.ShoppingApp.AccountService.model.User;
+import com.sherry.ShoppingApp.AccountsMicroService.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

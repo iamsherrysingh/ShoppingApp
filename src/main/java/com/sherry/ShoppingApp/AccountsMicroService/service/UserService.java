@@ -1,6 +1,6 @@
-package com.sherry.ShoppingApp.AccountService.service;
+package com.sherry.ShoppingApp.AccountsMicroService.service;
 
-import com.sherry.ShoppingApp.AccountService.model.User;
+import com.sherry.ShoppingApp.AccountsMicroService.model.User;
 
 import java.util.List;
 
