@@ -29,4 +29,9 @@ public class ProductServiceImpl implements ProductService{
             return new Product();
         }
     }
+
+    @Override
+    public void addProduct(Product product) {
+        productDAO.save(product);
+    }
 }

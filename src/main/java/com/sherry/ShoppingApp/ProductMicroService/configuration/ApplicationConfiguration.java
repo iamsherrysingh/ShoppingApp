@@ -13,5 +13,4 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @PropertySource({"classpath:ProductServiceApplication.properties"})
 public class ApplicationConfiguration {
 
-
 }
