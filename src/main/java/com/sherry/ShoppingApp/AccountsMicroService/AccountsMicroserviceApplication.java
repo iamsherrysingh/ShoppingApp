@@ -10,7 +10,7 @@ public class AccountsMicroserviceApplication {
 		SpringApplication.run(AccountsMicroserviceApplication.class, args);
 
 
-		System.out.println("Accounts Microservice started");
+		System.out.println("ACCOUNTS MICROSERVICE STARTED");
 
 
 	}

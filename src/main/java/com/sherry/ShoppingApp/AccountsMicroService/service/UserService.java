@@ -19,4 +19,8 @@ public interface UserService {
 
     public User getUserByUserName(String userName);
 
+    public void addUser(User user);
+
+    public void deleteUser(String userName);
+
 }

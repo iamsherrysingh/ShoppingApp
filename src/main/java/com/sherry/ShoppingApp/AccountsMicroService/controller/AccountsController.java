@@ -33,4 +33,14 @@ public class AccountsController {
     public boolean checkUserNameAndPassword(@RequestParam("userName") String userName,@RequestParam("password") String password){
         return userService.checkUserNameAndPassword(userName, password);
     }
+
+    @PostMapping("/user")
+    public void addUser(@RequestBody User user){
+        userService.addUser(user);
+    }
+
+    @DeleteMapping("/user/{userName}")
+    public void deleteUser(@PathVariable String userName){
+        userService.deleteUser(userName);
+    }
 }

@@ -49,4 +49,14 @@ public class UserServiceImpl implements UserService {
             return new User();
         }
     }
+
+    @Override
+    public void addUser(User user) {
+        userDAO.save(user);
+    }
+
+    @Override
+    public void deleteUser(String userName) {
+        userDAO.delete(getUserByUserName(userName));
+    }
 }
