@@ -1,7 +1,6 @@
-package com.sherry.ShoppingApp.ProductMicroService.service;
+package com.sherry.ProductMicroService.service;
 
-import com.sherry.ShoppingApp.ProductMicroService.model.Product;
-import org.springframework.data.jpa.repository.Query;
+import com.sherry.ProductMicroService.model.Product;
 import org.springframework.stereotype.Service;
 import java.util.List;
 

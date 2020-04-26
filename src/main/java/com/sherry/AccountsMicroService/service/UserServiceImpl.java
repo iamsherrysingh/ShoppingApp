@@ -1,7 +1,7 @@
-package com.sherry.ShoppingApp.AccountsMicroService.service;
+package com.sherry.AccountsMicroService.service;
 
-import com.sherry.ShoppingApp.AccountsMicroService.dao.UserDAO;
-import com.sherry.ShoppingApp.AccountsMicroService.model.User;
+import com.sherry.AccountsMicroService.dao.UserDAO;
+import com.sherry.AccountsMicroService.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

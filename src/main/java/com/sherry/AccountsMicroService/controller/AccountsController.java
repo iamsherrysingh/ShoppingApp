@@ -1,7 +1,7 @@
-package com.sherry.ShoppingApp.AccountsMicroService.controller;
+package com.sherry.AccountsMicroService.controller;
 
-import com.sherry.ShoppingApp.AccountsMicroService.model.User;
-import com.sherry.ShoppingApp.AccountsMicroService.service.UserService;
+import com.sherry.AccountsMicroService.model.User;
+import com.sherry.AccountsMicroService.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

@@ -1,6 +1,6 @@
-package com.sherry.ShoppingApp.ProductMicroService.dao;
+package com.sherry.ProductMicroService.dao;
 
-import com.sherry.ShoppingApp.ProductMicroService.model.Product;
+import com.sherry.ProductMicroService.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
