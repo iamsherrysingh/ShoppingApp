@@ -15,14 +15,14 @@ public class ProductServiceImpl implements ProductService{
     @Autowired
     ProductDAO productDAO;
 
-    @Cacheable("getProductsCache")
+//    @Cacheable("getProductsCache")
     @Override
     public List<Product> getProducts() {
         List<Product> products= productDAO.findAll();
         return products;
     }
 
-    @Cacheable("getProductsByIdCache")
+//    @Cacheable("getProductsByIdCache")
     @Override
     public Product getProductById(Integer id) {
         Optional<Product> product= productDAO.findById(id);
@@ -37,4 +37,16 @@ public class ProductServiceImpl implements ProductService{
     public void addProduct(Product product) {
         productDAO.save(product);
     }
+
+    @Override
+    public List<Product> sortByPriceGreaterThan(Double minPrice) {
+        return productDAO.sortByPriceGreaterThan(minPrice);
+    }
+
+    @Override
+    public List<Product> sortByPriceLessThan(Double minPrice) {
+        return productDAO.sortByPriceLessThan(minPrice);
+    }
+
+
 }
