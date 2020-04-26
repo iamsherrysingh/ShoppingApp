@@ -12,9 +12,6 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    ProductDAO productDAO;
-
-    @Autowired
     ProductService productService;
 
     @GetMapping("/greaterthan/{id}")
@@ -43,5 +40,15 @@ public class ProductController {
     @PostMapping("/add")
     public void addProduct(@RequestBody Product product){
         productService.addProduct(product);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable Integer id){
+        productService.deleteProduct(id);
+    }
+
+    @PutMapping("/updatePrice")
+    public void updateProduct(@RequestParam("id") Integer id, @RequestParam("newPrice") Double newPrice){
+        productService.updatePrice(id, newPrice);
     }
 }

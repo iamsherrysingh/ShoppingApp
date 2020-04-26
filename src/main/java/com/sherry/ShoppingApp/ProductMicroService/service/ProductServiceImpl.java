@@ -3,6 +3,8 @@ package com.sherry.ShoppingApp.ProductMicroService.service;
 import com.sherry.ShoppingApp.ProductMicroService.dao.ProductDAO;
 import com.sherry.ShoppingApp.ProductMicroService.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -15,14 +17,14 @@ public class ProductServiceImpl implements ProductService{
     @Autowired
     ProductDAO productDAO;
 
-//    @Cacheable("getProductsCache")
+    @Cacheable(cacheNames = "getProductsCache")
     @Override
     public List<Product> getProducts() {
         List<Product> products= productDAO.findAll();
         return products;
     }
 
-//    @Cacheable("getProductsByIdCache")
+    @Cacheable("getProductsByIdCache")
     @Override
     public Product getProductById(Integer id) {
         Optional<Product> product= productDAO.findById(id);
@@ -33,6 +35,8 @@ public class ProductServiceImpl implements ProductService{
         }
     }
 
+    //Using the allEntries attribute to evict all entries from the cache.
+    @CacheEvict(cacheNames = {"getProductsCache"}, allEntries = true)
     @Override
     public void addProduct(Product product) {
         productDAO.save(product);
@@ -46,6 +50,23 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public List<Product> sortByPriceLessThan(Double minPrice) {
         return productDAO.sortByPriceLessThan(minPrice);
+    }
+
+    @CacheEvict(cacheNames = {"getProductsCache"}, allEntries = true)
+    @CachePut(cacheNames = "getProductsByIdCache", key="#id")
+    @Override
+    public void deleteProduct(Integer id) {
+        productDAO.delete(getProductById(id));
+    }
+
+    @CacheEvict(cacheNames = {"getProductsCache"}, allEntries = true)
+    @CachePut(cacheNames = "getProductsByIdCache", key="#id")
+    @Override
+    public void updatePrice(Integer id, Double newPrice) {
+        Product product= getProductById(id);
+        product.setPrice(newPrice);
+        productDAO.save(product);
+
     }
 
 

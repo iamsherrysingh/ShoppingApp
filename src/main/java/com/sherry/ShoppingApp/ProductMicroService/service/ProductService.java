@@ -13,5 +13,7 @@ public interface ProductService {
     public void addProduct(Product product);
     List<Product> sortByPriceGreaterThan(Double minPrice);
     List<Product> sortByPriceLessThan(Double minPrice);
+    public void deleteProduct(Integer id);
+    public void updatePrice(Integer id, Double newPrice);
 
 }
