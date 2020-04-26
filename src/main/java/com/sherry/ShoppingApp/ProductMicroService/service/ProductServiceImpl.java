@@ -3,6 +3,7 @@ package com.sherry.ShoppingApp.ProductMicroService.service;
 import com.sherry.ShoppingApp.ProductMicroService.dao.ProductDAO;
 import com.sherry.ShoppingApp.ProductMicroService.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,12 +15,14 @@ public class ProductServiceImpl implements ProductService{
     @Autowired
     ProductDAO productDAO;
 
+    @Cacheable("getProductsCache")
     @Override
     public List<Product> getProducts() {
         List<Product> products= productDAO.findAll();
         return products;
     }
 
+    @Cacheable("getProductsByIdCache")
     @Override
     public Product getProductById(Integer id) {
         Optional<Product> product= productDAO.findById(id);
