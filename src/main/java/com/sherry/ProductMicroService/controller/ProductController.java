@@ -1,8 +1,7 @@
-package com.sherry.ShoppingApp.ProductMicroService.controller;
+package com.sherry.ProductMicroService.controller;
 
-import com.sherry.ShoppingApp.ProductMicroService.dao.ProductDAO;
-import com.sherry.ShoppingApp.ProductMicroService.model.Product;
-import com.sherry.ShoppingApp.ProductMicroService.service.ProductService;
+import com.sherry.ProductMicroService.model.Product;
+import com.sherry.ProductMicroService.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.sherry.ShoppingApp.ProductMicroService.configuration;
+package com.sherry.ProductMicroService.configuration;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan(basePackages = {"com.sherry.ShoppingApp.ProductMicroService"})
+@ComponentScan(basePackages = {"com.sherry.ProductMicroService"})
 @PropertySource({"classpath:ProductServiceApplication.properties"})
 public class ApplicationConfiguration {
 

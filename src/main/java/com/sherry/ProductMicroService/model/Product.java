@@ -1,7 +1,6 @@
-package com.sherry.ShoppingApp.ProductMicroService.model;
+package com.sherry.ProductMicroService.model;
 
 import javax.persistence.*;
-import java.util.Arrays;
 
 @Entity
 @Table(name="product")
