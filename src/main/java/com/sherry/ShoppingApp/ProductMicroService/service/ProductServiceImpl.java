@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class ProductServiceImpl implements ProductService{
         return products;
     }
 
-    @Cacheable("getProductsByIdCache")
+    @Cacheable(cacheNames = "getProductsByIdCache", key="#id")
     @Override
     public Product getProductById(Integer id) {
         Optional<Product> product= productDAO.findById(id);
@@ -52,15 +53,15 @@ public class ProductServiceImpl implements ProductService{
         return productDAO.sortByPriceLessThan(minPrice);
     }
 
-    @CacheEvict(cacheNames = {"getProductsCache"}, allEntries = true)
-    @CachePut(cacheNames = "getProductsByIdCache", key="#id")
+    @Caching( evict = { @CacheEvict(cacheNames = {"getProductsCache"}, allEntries = true),
+            @CacheEvict(cacheNames = "getProductsByIdCache", key="#id")  } )
     @Override
     public void deleteProduct(Integer id) {
         productDAO.delete(getProductById(id));
     }
 
-    @CacheEvict(cacheNames = {"getProductsCache"}, allEntries = true)
-    @CachePut(cacheNames = "getProductsByIdCache", key="#id")
+    @Caching( evict = { @CacheEvict(cacheNames = {"getProductsCache"}, allEntries = true),
+                        @CacheEvict(cacheNames = "getProductsByIdCache", key="#id")  } )
     @Override
     public void updatePrice(Integer id, Double newPrice) {
         Product product= getProductById(id);
