@@ -46,7 +46,7 @@ public class ProductController {
         productService.deleteProduct(id);
     }
 
-    @PutMapping("/updatePrice")
+    @PostMapping("/updatePrice")
     public void updateProduct(@RequestParam("id") Integer id, @RequestParam("newPrice") Double newPrice){
         productService.updatePrice(id, newPrice);
     }

@@ -34,7 +34,7 @@ public class AccountsController {
         return customerService.checkCustomerNameAndPassword(customerName, password);
     }
 
-    @PutMapping("/customer")
+    @PostMapping("/customer")
     public void addCustomer(@RequestBody Customer customer){
         customerService.addCustomer(customer);
     }

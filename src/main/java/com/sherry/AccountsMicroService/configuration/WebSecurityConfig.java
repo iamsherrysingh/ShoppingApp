@@ -17,6 +17,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         //Permits all traffic without authentication
         http.authorizeRequests().anyRequest().permitAll();
+        http.cors().and().csrf().disable();
     }
 
     @Override
