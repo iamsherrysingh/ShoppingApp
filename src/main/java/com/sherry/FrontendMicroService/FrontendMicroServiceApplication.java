@@ -1,12 +1,13 @@
 package com.sherry.FrontendMicroService;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.sherry.FrontendMicroService.dao.UserDAO;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-import java.util.Properties;
 
 @SpringBootApplication
+@EnableJpaRepositories(basePackageClasses = UserDAO.class)
 public class FrontendMicroServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(FrontendMicroServiceApplication.class, args);
