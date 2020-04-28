@@ -32,7 +32,7 @@ public class ProductController {
      * Usage: localhost:8081/product/1
      */
     @GetMapping("/{id}")
-    public Product getUserByUserName(@PathVariable Integer id){
+    public Product getProductById(@PathVariable Integer id){
         return productService.getProductById(id);
     }
 
