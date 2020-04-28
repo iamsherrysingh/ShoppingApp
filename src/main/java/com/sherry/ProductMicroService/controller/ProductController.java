@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = {"/products", ""})
+@RequestMapping(value = {"/products"})
 public class ProductController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class ProductController {
         return productService.sortByPriceLessThan(maxPrice);
     }
 
-    @GetMapping("/all")
+    @GetMapping(value={"/all" , ""})
     public List<Product> listProducts() {
         return productService.getProducts();
     }
