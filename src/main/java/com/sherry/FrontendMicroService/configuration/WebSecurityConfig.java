@@ -22,14 +22,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         //Authenticates all traffic
-//        http.authorizeRequests().anyRequest().fullyAuthenticated().and().formLogin();
+        http.authorizeRequests().anyRequest().fullyAuthenticated().and().formLogin();
 
         //Authorise user
-        http.authorizeRequests()
+       /*http.authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/user").hasAnyRole("ADMIN" , "USER")
                 .antMatchers("/").permitAll()
-                .and().formLogin();
+                .and().formLogin();*/
 
 
         //Permits all traffic without authentication
