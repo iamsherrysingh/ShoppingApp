@@ -1,4 +1,4 @@
-package com.sherry.ShoppingMicroService.configuration;
+package com.sherry.FrontendMicroService.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -17,6 +17,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         //Permits all traffic without authentication
         http.authorizeRequests().anyRequest().permitAll();
+        http.cors().and().csrf().disable();
     }
 
     @Override

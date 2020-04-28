@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = {"/products", ""})
+@RequestMapping(value = {"/products"})
 public class ProductController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class ProductController {
         return productService.sortByPriceLessThan(maxPrice);
     }
 
-    @GetMapping("/all")
+    @GetMapping(value={"/all" , ""})
     public List<Product> listProducts() {
         return productService.getProducts();
     }
@@ -32,7 +32,7 @@ public class ProductController {
      * Usage: localhost:8081/product/1
      */
     @GetMapping("/{id}")
-    public Product getUserByUserName(@PathVariable Integer id){
+    public Product getProductById(@PathVariable Integer id){
         return productService.getProductById(id);
     }
 
@@ -46,7 +46,7 @@ public class ProductController {
         productService.deleteProduct(id);
     }
 
-    @PutMapping("/updatePrice")
+    @PostMapping("/updatePrice")
     public void updateProduct(@RequestParam("id") Integer id, @RequestParam("newPrice") Double newPrice){
         productService.updatePrice(id, newPrice);
     }

@@ -1,10 +1,10 @@
 package com.sherry.AccountsMicroService.service;
 
-import com.sherry.AccountsMicroService.model.User;
+import com.sherry.AccountsMicroService.model.Customer;
 
 import java.util.List;
 
-public interface UserService {
+public interface customerService {
     /**
      *checks if the userName and password combo is correct
      *
@@ -13,14 +13,14 @@ public interface UserService {
      * @return true if the userName and password combo is correct
      * @return false if the userName and password combo is not correct
      */
-    boolean checkUserNameAndPassword(String userName, String password);
+    boolean checkCustomerNameAndPassword(String userName, String password);
 
-    public List<User> getUsers();
+    public List<Customer> getCustomers();
 
-    public User getUserByUserName(String userName);
+    public Customer getCustomerByCustomerName(String userName);
 
-    public void addUser(User user);
+    public void addCustomer(Customer customer);
 
-    public void deleteUser(String userName);
+    public void deleteCustomer(String userName);
 
 }

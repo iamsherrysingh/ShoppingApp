@@ -50,7 +50,7 @@
 		</dependency>
 
 <!-- Spring Security’s embedded Java-based LDAP server.
-I will load the LDAP server with a data file that contains a set of users. -->
+I will load the LDAP server with a data file that contains a set of customers. -->
 		<dependency>
 			<groupId>org.springframework.ldap</groupId>
 			<artifactId>spring-ldap-core</artifactId>

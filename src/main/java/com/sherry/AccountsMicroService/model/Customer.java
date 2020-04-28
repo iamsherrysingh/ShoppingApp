@@ -6,29 +6,29 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="user")
-public class User {
+@Table(name="customer")
+public class Customer {
 
     @Id
-    @Column(name="user_name")
-    private  String userName;
+    @Column(name="customer_name")
+    private  String customerName;
 
     @Column(name="password")
     private  String password;
 
-    public User(){}
+    public Customer(){}
 
-    public User(String userName, String password) {
-        this.userName = userName;
+    public Customer(String customerName, String password) {
+        this.customerName = customerName;
         this.password = password;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setCustomerName(String userName) {
+        this.customerName = userName;
     }
 
     public String getPassword() {
@@ -41,8 +41,8 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "userName='" + userName + '\'' +
+        return "Customer{" +
+                "customerName='" + customerName + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

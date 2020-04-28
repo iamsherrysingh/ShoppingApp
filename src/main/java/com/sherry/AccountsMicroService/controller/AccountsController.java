@@ -1,7 +1,7 @@
 package com.sherry.AccountsMicroService.controller;
 
-import com.sherry.AccountsMicroService.model.User;
-import com.sherry.AccountsMicroService.service.UserService;
+import com.sherry.AccountsMicroService.model.Customer;
+import com.sherry.AccountsMicroService.service.customerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -11,36 +11,36 @@ import java.util.List;
 public class AccountsController {
 
     @Autowired
-    UserService userService;
+    customerService customerService;
 
-    @GetMapping("/users")
-    public List<User> listUsers() {
-        return userService.getUsers();
+    @GetMapping("/customers")
+    public List<Customer> listCustomers() {
+        return customerService.getCustomers();
     }
 
     /*
      * Usage: localhost:8080/accounts/user/Sherry
      */
-    @GetMapping("/user/{userName}")
-    public User getUserByUserName(@PathVariable String userName){
-        return userService.getUserByUserName(userName);
+    @GetMapping("/customer/{customerName}")
+    public Customer getCustomerByCustomerName(@PathVariable String customerName){
+        return customerService.getCustomerByCustomerName(customerName);
     }
 
     /*
      * Usage: localhost:8080/accounts/check?userName=Sherry&password=password
      */
     @GetMapping("/check")
-    public boolean checkUserNameAndPassword(@RequestParam("userName") String userName,@RequestParam("password") String password){
-        return userService.checkUserNameAndPassword(userName, password);
+    public boolean checkCustomerNameAndPassword(@RequestParam("customerName") String customerName, @RequestParam("password") String password){
+        return customerService.checkCustomerNameAndPassword(customerName, password);
     }
 
-    @PostMapping("/user")
-    public void addUser(@RequestBody User user){
-        userService.addUser(user);
+    @PostMapping("/customer")
+    public void addCustomer(@RequestBody Customer customer){
+        customerService.addCustomer(customer);
     }
 
-    @DeleteMapping("/user/{userName}")
-    public void deleteUser(@PathVariable String userName){
-        userService.deleteUser(userName);
+    @DeleteMapping("/customer/{customerName}")
+    public void deleteCustomer(@PathVariable String customerName){
+        customerService.deleteCustomer(customerName);
     }
 }
