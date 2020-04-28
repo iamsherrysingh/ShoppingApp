@@ -1,9 +1,9 @@
 package com.sherry.FrontendMicroService.dao;
 
-import com.sherry.FrontendMicroService.model.Admin;
+import com.sherry.FrontendMicroService.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AdminDAO extends JpaRepository<Admin, String> {
+public interface UserDAO extends JpaRepository<User, String> {
 }

@@ -63,12 +63,13 @@ I will load the LDAP server with a data file that contains a set of customers. -
 			<groupId>com.unboundid</groupId>
 			<artifactId>unboundid-ldapsdk</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+        </dependency>
 
 
-
-
-
-	</dependencies>
+    </dependencies>
 
 	<build>
 		<plugins>

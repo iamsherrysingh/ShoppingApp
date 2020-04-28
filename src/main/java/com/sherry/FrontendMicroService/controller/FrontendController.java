@@ -1,7 +1,7 @@
 package com.sherry.FrontendMicroService.controller;
 
-import com.sherry.FrontendMicroService.model.Admin;
-import com.sherry.FrontendMicroService.service.AdminService;
+import com.sherry.FrontendMicroService.model.User;
+import com.sherry.FrontendMicroService.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +12,7 @@ import java.util.List;
 public class FrontendController {
 
     @Autowired
-    AdminService adminService;
+    UserService userService;
 
     @GetMapping(value = {"/" , ""})
     public String sayHello(){
@@ -20,14 +20,25 @@ public class FrontendController {
     }
 
     @GetMapping("/admins")
-    public List<Admin> getAdmins(){
-        return adminService.getAdmins();
+    public List<User> getUsers(){
+        return userService.getUsers();
     }
 
     @PostMapping("/authenticate")
-    public String getJwtToken(@RequestBody Admin admin){
-        System.out.println(admin);
+    public String getJwtToken(@RequestBody User user){
+        System.out.println(user);
         return "hj1b23hjb123bjk13.kjhjb13hj1b3b2hb12h3b12312hj3bh12b3j.b56b456b46jbk3k";
     }
+
+    @GetMapping(value = {"/admin"})
+    public String helloAdmin(){
+        return "Welcome Admin";
+    }
+
+    @GetMapping(value = {"/user"})
+    public String helloUser(){
+        return "Welcome User";
+    }
+
 
 }
