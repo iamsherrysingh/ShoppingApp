@@ -1,4 +1,4 @@
-package com.sherry.ShoppingMicroService.configuration;
+package com.sherry.FrontendMicroService.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
