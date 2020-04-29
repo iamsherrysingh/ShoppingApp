@@ -10,9 +10,9 @@ import java.util.List;
 @Repository
 public interface ProductDAO extends JpaRepository<Product, Integer> {
 
-    @Query(value="select * from product where price > ?1", nativeQuery = true)
+    @Query(value = "select * from product where price > ?1", nativeQuery = true)
     List<Product> sortByPriceGreaterThan(Double minPrice);
 
-    @Query(value="select * from product where price < ?1", nativeQuery = true)
+    @Query(value = "select * from product where price < ?1", nativeQuery = true)
     List<Product> sortByPriceLessThan(Double minPrice);
 }

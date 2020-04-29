@@ -1,41 +1,44 @@
 package com.sherry.FrontendMicroService.model;
 
-import javassist.Loader;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name="user")
+@Table(name = "user")
 public class User implements UserDetails {
 
     @Id
-    @Column(name="user_name")
+    @Column(name = "user_name")
     String userName;
 
-    @Column(name="password")
+    @Column(name = "password")
     String password;
 
-    @Column(name= "active")
+    @Column(name = "active")
     Boolean active;
 
-    @Column(name="role")
+    @Column(name = "role")
     String role;
 
-    public User(){};
+    @Transient
+    List<SimpleGrantedAuthority> authorities;
 
-    public User(String userName, String password) {
+    public User() {
+    }
+
+    ;
+
+    public User(String userName, String password, List<SimpleGrantedAuthority> authorities) {
         this.userName = userName;
         this.password = password;
+        this.authorities = authorities;
     }
 
     public String getPassword() {
@@ -68,9 +71,14 @@ public class User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        List<GrantedAuthority> autorities=new ArrayList<>();
-        Arrays.asList(role.split(",")).forEach(r -> autorities.add(new SimpleGrantedAuthority(r)));
-        return autorities;
+        //If authorities list has already been built, return it
+        if (authorities != null)
+            return authorities;
+
+        //building authorities list using this.role from DB
+        authorities = new ArrayList<>();
+        Arrays.asList(role.split(",")).forEach(r -> authorities.add(new SimpleGrantedAuthority(r)));
+        return authorities;
     }
 
     /**
