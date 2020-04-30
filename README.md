@@ -75,6 +75,7 @@ Note: Database connection string is `spring.datasource.url=jdbc:mysql://localhos
 `docker image rm -f imageName `  OR `docker rmi imageName1 imageName2`                <br>
 
 ###### operating on containers
+`docker run -p hostPort:dockerExposedPort --name=containerName -d imageName` <br>
 `docker start containerName`                     <br>
 `docker restart containerName`                   <br>
 `docker stop containerName`                      <br>
