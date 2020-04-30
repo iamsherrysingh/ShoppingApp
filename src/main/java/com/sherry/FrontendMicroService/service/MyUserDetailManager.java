@@ -24,6 +24,8 @@ public class MyUserDetailManager implements UserDetailsManager {
     @Override
     public void createUser(UserDetails user) {
 
+        System.out.println(user);
+        userDAO.save((User) user);
     }
 
     /**
@@ -65,7 +67,7 @@ public class MyUserDetailManager implements UserDetailsManager {
      */
     @Override
     public boolean userExists(String username) {
-        return false;
+        return true;
     }
 
     /**
@@ -86,7 +88,7 @@ public class MyUserDetailManager implements UserDetailsManager {
         if (user.isPresent()) {
             return user.get();
         }
-        return null;
+        throw new UsernameNotFoundException("Username " + username + " not found. Please check the username and try again");
     }
 
     public List<User> getUsers() {

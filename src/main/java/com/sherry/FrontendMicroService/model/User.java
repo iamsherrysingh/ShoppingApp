@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -16,7 +15,7 @@ public class User implements UserDetails {
 
     @Id
     @Column(name = "user_name")
-    String userName;
+    String username;
 
     @Column(name = "password")
     String password;
@@ -28,17 +27,16 @@ public class User implements UserDetails {
     String role;
 
     @Transient
-    List<SimpleGrantedAuthority> authorities;
+    ArrayList<SimpleGrantedAuthority> authorities;
 
     public User() {
     }
 
-    ;
-
-    public User(String userName, String password, List<SimpleGrantedAuthority> authorities) {
-        this.userName = userName;
+    public User(String username, String password, Boolean active, String role) {
+        this.username = username;
         this.password = password;
-        this.authorities = authorities;
+        this.active = active;
+        this.role = role;
     }
 
     public String getPassword() {
@@ -60,7 +58,7 @@ public class User implements UserDetails {
      */
     @Override
     public String getUsername() {
-        return userName;
+        return username;
     }
 
     /**
@@ -130,7 +128,7 @@ public class User implements UserDetails {
     @Override
     public String toString() {
         return "User{" +
-                "userName='" + userName + '\'' +
+                "userName='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", active=" + active +
                 ", authority='" + getAuthorities().toString() + '\'' +

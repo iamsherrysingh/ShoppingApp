@@ -1,8 +1,8 @@
 package com.sherry.FrontendMicroService.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -12,7 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
 
 @EnableWebSecurity
-@EnableAutoConfiguration
+@Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -21,20 +21,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        //Authenticates all traffic
-//        http.authorizeRequests().anyRequest().fullyAuthenticated().and().formLogin();
+        http
+                .authorizeRequests()
+                .antMatchers("/admin/**").hasAuthority("ADMIN")
+                .antMatchers("/user").hasAnyAuthority("USER", "ADMIN")
+                .anyRequest().permitAll()  //Permitting access to remaining endpoints
+                .and().httpBasic();
 
-        //Authorise user
-       /*http.authorizeRequests()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user").hasAnyRole("ADMIN" , "USER")
-                .antMatchers("/").permitAll()
-                .and().formLogin();*/
+//        http
+//                .authorizeRequests()
+//                .antMatchers("/admin").hasAuthority("ADMIN")
+//                .antMatchers("/user").hasAnyAuthority("ADMIN" , "USER")
+//                .anyRequest().permitAll()
+//                .and().formLogin();
 
-
-        //Permits all traffic without authentication
-        http.authorizeRequests().anyRequest().permitAll();
-        http.cors().and().csrf().disable();
     }
 
     @Override
