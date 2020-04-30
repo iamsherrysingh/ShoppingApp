@@ -21,14 +21,18 @@ This project contains all the microservices separated in packages with their own
 In the project's current state, these microservices can be spun up on just 1 server but at different ports.
 
 
-### Docker image build guide:
+### Shopping App Docker image build guide:
 1. Install Docker
 2. Import project as Maven Project
 3. run Maven clean, Maven install
 4. docker pull openjdk:latest
 5. 'Dockerfile' is already in project root. Switch to project root.
 6. Run: `docker build -f .\Dockerfile -t frontcontroller .`
-7. `docker run -p 8082:8082 frontcontroller`
+7. `docker run -p 8082:8082 -frontCon frontcontroller`
+
+######To start or stop frontCon container:
+docker start frontCon
+docker stop frontCon
 
 Docker Note: Make sure there is only 1 main() in the project. Comment the other main()s if needed.
 Ideally there should be 1 microservice per project, not multiple like in this project.
@@ -46,8 +50,8 @@ Ideally there should be 1 microservice per project, not multiple like in this pr
 ##### USING DATABASE:
 
 ######To start or stop mysqlCon container:
-docker ps -a
-docket start/stop <<container-id>>
+docker start mysqlCon
+docker stop mysqlCon
 
 ###### To login to mysqlCon container
 docker exec -it mysqlCon mysql -uroot -p
