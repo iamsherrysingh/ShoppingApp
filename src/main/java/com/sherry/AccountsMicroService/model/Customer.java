@@ -6,17 +6,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="customer")
+@Table(name = "customer")
 public class Customer {
 
     @Id
-    @Column(name="customer_name")
-    private  String customerName;
+    @Column(name = "customer_name")
+    private String customerName;
 
-    @Column(name="password")
-    private  String password;
+    @Column(name = "password")
+    private String password;
 
-    public Customer(){}
+    public Customer() {
+    }
 
     public Customer(String customerName, String password) {
         this.customerName = customerName;

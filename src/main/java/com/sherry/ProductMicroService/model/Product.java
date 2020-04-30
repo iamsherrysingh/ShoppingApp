@@ -3,27 +3,28 @@ package com.sherry.ProductMicroService.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="product")
+@Table(name = "product")
 public class Product {
 
     @Id
-    @Column(name="id")
+    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @Column(name="product_name")
+    @Column(name = "product_name")
     String productName;
 
-    @Column(name="product_description")
+    @Column(name = "product_description")
     String productDescription;
 
-    @Column(name="product_image")
+    @Column(name = "product_image")
     String productImage;
 
-    @Column(name="price")
+    @Column(name = "price")
     double price;
 
-    public Product(){}
+    public Product() {
+    }
 
     public Product(String productName, String productDescription, String productImage, double price) {
         this.productName = productName;
@@ -40,28 +41,28 @@ public class Product {
         return productName;
     }
 
-    public String getProductDescription() {
-        return productDescription;
-    }
-
-    public String getProductImage() {
-        return productImage;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public String getProductDescription() {
+        return productDescription;
     }
 
     public void setProductDescription(String productDescription) {
         this.productDescription = productDescription;
     }
 
+    public String getProductImage() {
+        return productImage;
+    }
+
     public void setProductImage(String productImage) {
         this.productImage = productImage;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     public void setPrice(double price) {

@@ -4,6 +4,7 @@ import com.sherry.AccountsMicroService.dao.CustomerDAO;
 import com.sherry.AccountsMicroService.model.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -14,18 +15,17 @@ public class CustomerServiceImpl implements customerService {
     CustomerDAO customerDAO;
 
     /**
-     *checks if the userName and password combo is correct
+     * checks if the userName and password combo is correct
      *
      * @param userName user name as String
      * @param password password as String
-     * @return true if the userName and password combo is correct
      * @return false if the userName and password combo is not correct
      */
     @Override
     public boolean checkCustomerNameAndPassword(String customerName, String password) {
         Customer customer = getCustomerByCustomerName(customerName);
-        if(customer.getCustomerName() != null) {
-            if(customerName.equals(customer.getCustomerName()) && password.equals(customer.getPassword()))
+        if (customer.getCustomerName() != null) {
+            if (customerName.equals(customer.getCustomerName()) && password.equals(customer.getPassword()))
                 return true;
             else
                 return false;
@@ -42,10 +42,10 @@ public class CustomerServiceImpl implements customerService {
 
     @Override
     public Customer getCustomerByCustomerName(String customerName) {
-        Optional<Customer> customer= customerDAO.findById(customerName);
-        if(customer.isPresent()){
+        Optional<Customer> customer = customerDAO.findById(customerName);
+        if (customer.isPresent()) {
             return customer.get();
-        }else {
+        } else {
             return new Customer();
         }
     }

@@ -4,6 +4,7 @@ import com.sherry.AccountsMicroService.model.Customer;
 import com.sherry.AccountsMicroService.service.customerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -22,7 +23,7 @@ public class AccountsController {
      * Usage: localhost:8080/accounts/user/Sherry
      */
     @GetMapping("/customer/{customerName}")
-    public Customer getCustomerByCustomerName(@PathVariable String customerName){
+    public Customer getCustomerByCustomerName(@PathVariable String customerName) {
         return customerService.getCustomerByCustomerName(customerName);
     }
 
@@ -30,17 +31,17 @@ public class AccountsController {
      * Usage: localhost:8080/accounts/check?userName=Sherry&password=password
      */
     @GetMapping("/check")
-    public boolean checkCustomerNameAndPassword(@RequestParam("customerName") String customerName, @RequestParam("password") String password){
+    public boolean checkCustomerNameAndPassword(@RequestParam("customerName") String customerName, @RequestParam("password") String password) {
         return customerService.checkCustomerNameAndPassword(customerName, password);
     }
 
     @PostMapping("/customer")
-    public void addCustomer(@RequestBody Customer customer){
+    public void addCustomer(@RequestBody Customer customer) {
         customerService.addCustomer(customer);
     }
 
     @DeleteMapping("/customer/{customerName}")
-    public void deleteCustomer(@PathVariable String customerName){
+    public void deleteCustomer(@PathVariable String customerName) {
         customerService.deleteCustomer(customerName);
     }
 }

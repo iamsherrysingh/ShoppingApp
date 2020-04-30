@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
     ProductDAO productDAO;
@@ -20,17 +20,17 @@ public class ProductServiceImpl implements ProductService{
     @Cacheable(cacheNames = "getProductsCache")
     @Override
     public List<Product> getProducts() {
-        List<Product> products= productDAO.findAll();
+        List<Product> products = productDAO.findAll();
         return products;
     }
 
-    @Cacheable(cacheNames = "getProductsByIdCache", key="#id")
+    @Cacheable(cacheNames = "getProductsByIdCache", key = "#id")
     @Override
     public Product getProductById(Integer id) {
-        Optional<Product> product= productDAO.findById(id);
-        if(product.isPresent()){
+        Optional<Product> product = productDAO.findById(id);
+        if (product.isPresent()) {
             return product.get();
-        }else {
+        } else {
             return new Product();
         }
     }
@@ -52,18 +52,18 @@ public class ProductServiceImpl implements ProductService{
         return productDAO.sortByPriceLessThan(minPrice);
     }
 
-    @Caching( evict = { @CacheEvict(cacheNames = {"getProductsCache"}, allEntries = true),
-                        @CacheEvict(cacheNames = "getProductsByIdCache", key="#id")  } )
+    @Caching(evict = {@CacheEvict(cacheNames = {"getProductsCache"}, allEntries = true),
+            @CacheEvict(cacheNames = "getProductsByIdCache", key = "#id")})
     @Override
     public void deleteProduct(Integer id) {
         productDAO.delete(getProductById(id));
     }
 
-    @Caching( evict = { @CacheEvict(cacheNames = {"getProductsCache"}, allEntries = true),
-                        @CacheEvict(cacheNames = "getProductsByIdCache", key="#id")  } )
+    @Caching(evict = {@CacheEvict(cacheNames = {"getProductsCache"}, allEntries = true),
+            @CacheEvict(cacheNames = "getProductsByIdCache", key = "#id")})
     @Override
     public void updatePrice(Integer id, Double newPrice) {
-        Product product= getProductById(id);
+        Product product = getProductById(id);
         product.setPrice(newPrice);
         productDAO.save(product);
 
