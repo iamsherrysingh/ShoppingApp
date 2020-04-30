@@ -8,9 +8,9 @@ I am focusing mostly on the APIs for the backend.
 1. Spring Boot
 2. Spring MVC
 3. Spring Data JPA
-4. Spring Cache
-5. Spring Security
-
+4. Docker Containers
+5. Spring Cache
+6. Spring Security
 
 ### To implement:
 1. JWT Access Tokens
@@ -31,10 +31,10 @@ In the project's current state, these microservices can be spun up on just 1 ser
 7. `docker run -p 8082:8082 -frontCon frontcontroller`
 
 ######To start or stop frontCon container:
-docker start frontCon
-docker stop frontCon
+`docker start frontCon`<br>
+`docker stop frontCon`
 
-Docker Note: Make sure there is only 1 main() in the project. Comment the other main()s if needed.
+Note: Make sure there is only 1 main() in the project. Comment the other main()s if needed.
 Ideally there should be 1 microservice per project, not multiple like in this project.
 
 ## MySQL docker setup guide
@@ -47,21 +47,17 @@ Ideally there should be 1 microservice per project, not multiple like in this pr
 4. mysql> `GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';`
 5. Create the databases, tables, joins as required
 
-##### USING DATABASE:
+##### TO USE DATABASE:
 
 ######To start or stop mysqlCon container:
-docker start mysqlCon
-docker stop mysqlCon
+`docker start mysqlCon`<br>
+`docker stop mysqlCon`
 
 ###### To login to mysqlCon container
-docker exec -it mysqlCon mysql -uroot -p
+`docker exec -it mysqlCon mysql -uroot -p`
 
 Note: Database connection string is `spring.datasource.url=jdbc:mysql://localhost:3306/shopping_app_frontend_db?useSSL=false`
       Database password for user root is root
-
-
-
-
 
 
 ## USEFUL DOCKER COMMANDS:
@@ -79,6 +75,7 @@ Note: Database connection string is `spring.datasource.url=jdbc:mysql://localhos
 `docker start containerName`                     <br>
 `docker restart containerName`                   <br>
 `docker stop containerName`                      <br>
+`docker kills containerName`                     <br>
 `docker rm containerName`                        <br>
 `docker rename containerName`                    <br>
 `docker ps`                                      <br>
