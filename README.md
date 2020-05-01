@@ -66,12 +66,12 @@ Note: Database connection string is `spring.datasource.url=jdbc:mysql://localhos
 `docker COMMAND --help`    COMMAND specific help
 
 ###### operating on images
-`docker build -f DockerFileName -t imageName .`  <br>
+`docker build -f DockerFileName -t imageName .`  Create image using Dockerfile<br>
 `docker images`                                  <br>
 `docker image rm -f imageName `  OR `docker rmi imageName1 imageName2`                <br>
 
 ###### operating on containers
-`docker run -p hostPort:dockerExposedPort --name=containerName -d imageName` <br>
+`docker run -p hostPort:dockerExposedPort --name=containerName -d imageName` Create container using image <br>
 `docker start containerName`                     <br>
 `docker restart containerName`                   <br>
 `docker stop containerName`                      <br>
