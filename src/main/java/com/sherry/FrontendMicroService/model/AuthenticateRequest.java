@@ -1,14 +1,13 @@
 package com.sherry.FrontendMicroService.model;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class AuthenticateRequest {
+
 
     String username;
     String password;
 
-    public AuthenticateRequest(){}
+    public AuthenticateRequest() {
+    }
 
     public AuthenticateRequest(String username, String password) {
         this.username = username;
