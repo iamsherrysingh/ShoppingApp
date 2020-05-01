@@ -25,31 +25,15 @@ It is created so the containers can resolve each other with container name witho
 `docker network create my-network`
 
 
-## Shopping App Docker image build guide:
-1. Install Docker
-2. Import project as Maven Project
-3. `run Maven clean, Maven install`
-4. `docker pull openjdk:latest`
-5. 'Dockerfile' is already in project root. Switch to project root.
-6. Run: `docker build -f .\Dockerfile -t frontcontroller .`
-7. `docker run -p 8082:8082 --name=frontCon --net=my-network frontcontroller`
-
-######To start or stop frontCon container:
-`docker start frontCon`<br>
-`docker stop frontCon`
-
-Note: Make sure there is only 1 main() in the project. Comment the other main()s if needed.
-Ideally there should be 1 microservice per project, not multiple like in this project.
-
 ## MySQL docker setup guide
 ##### INITIAL SETUP:
 
 1. `docker pull mysql:latest`
-2. `docker run -p 3306:3306 --name=mysqlCon -net=my-network -e MYSQL_ROOT_PASSWORD=root -d mysql`
+2. `docker run -p 3306:3306 --name=mysqlCon --net=my-network -e MYSQL_ROOT_PASSWORD=root -d mysql`
 3. `docker exec -it mysqlCon mysql -uroot -p`
 ###### Once logged in to mysql container, allow all access to root
 4. mysql> `GRANT ALL PRIVILEGES ON *.* TO 'root'@'%';`
-5. Create the databases, tables, joins as required
+5. Create the databases, tables, joins as required. For the purpose of this set you can use this script https://github.com/iamsherrysingh/ShoppingApp/blob/master/src/main/java/com/sherry/FrontendMicroService/shopping_app_frontend_db.sql
 
 ##### TO USE DATABASE:
 
@@ -60,8 +44,27 @@ Ideally there should be 1 microservice per project, not multiple like in this pr
 ###### To login to mysqlCon container
 `docker exec -it mysqlCon mysql -uroot -p`
 
-Note: Database connection string is `spring.datasource.url=jdbc:mysql://localhost:3306/shopping_app_frontend_db?useSSL=false`
+Note: Database connection string is `spring.datasource.url=jdbc:mysql://mysqlCon:3306/shopping_app_frontend_db?useSSL=false&allowPublicKeyRetrieval=true`
       Database password for user root is root
+
+
+## Shopping App Docker setup guide:
+1. Install Docker
+2. Import project as Maven Project
+3. `run Maven clean, Maven install`
+4. `docker pull openjdk:latest`
+5. 'Dockerfile' is already in project root. Switch to project root.
+6. Run: `docker build -f .\Dockerfile -t frontcontroller .`
+7. `docker run -p 8082:8082 --name=frontCon --net=my-network frontcontroller`
+
+Go to http://localhost:8082/ to access the application
+
+######To start or stop frontCon container:
+`docker start frontCon`<br>
+`docker stop frontCon`
+
+Note: Make sure there is only 1 main() in the project. Comment the other main()s if needed.
+Ideally there should be 1 microservice per project, not multiple like in this project.
 
 
 ## USEFUL DOCKER COMMANDS:
