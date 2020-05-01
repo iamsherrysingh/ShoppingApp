@@ -38,14 +38,14 @@ It is created so the containers can resolve each other with container name witho
 
 ##### TO USE DATABASE:
 
-######To start or stop mysqlCon container:
+#####To start or stop mysqlCon container:
 `docker start mysqlCon`<br>
 `docker stop mysqlCon`
 
 ###### To login to mysqlCon container
 `docker exec -it mysqlCon mysql -uroot -p`
 
-Note: Database connection string is `spring.datasource.url=jdbc:mysql://mysqlCon:3306/shopping_app_frontend_db?useSSL=false&allowPublicKeyRetrieval=true`
+**Note:** Database connection string is `spring.datasource.url=jdbc:mysql://mysqlCon:3306/shopping_app_frontend_db?useSSL=false&allowPublicKeyRetrieval=true`
       Database password for user root is root
 
 
@@ -60,11 +60,11 @@ Note: Database connection string is `spring.datasource.url=jdbc:mysql://mysqlCon
 
 Go to http://localhost:8082/ to access the application
 
-######To start or stop frontCon container:
+#####To start or stop frontCon container:
 `docker start frontCon`<br>
 `docker stop frontCon`
 
-Note: Make sure there is only 1 main() in the project. Comment the other main()s if needed.
+**Note:** Make sure there is only 1 main() in the project. Comment the other main()s if needed.
 Ideally there should be 1 microservice per project, not multiple like in this project.
 
 
