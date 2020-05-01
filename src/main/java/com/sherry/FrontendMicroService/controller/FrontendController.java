@@ -1,8 +1,15 @@
 package com.sherry.FrontendMicroService.controller;
 
-import com.sherry.FrontendMicroService.model.User;
-import com.sherry.FrontendMicroService.service.MyUserDetailManager;
+import com.sherry.FrontendMicroService.model.AuthenticateRequest;
+import com.sherry.FrontendMicroService.model.AuthenticationResponse;
+import com.sherry.FrontendMicroService.service.MyUserDetailService;
+import com.sherry.FrontendMicroService.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -10,21 +17,42 @@ import org.springframework.web.bind.annotation.*;
 public class FrontendController {
 
     @Autowired
-    MyUserDetailManager myUserDetailManager;
+    MyUserDetailService myUserDetailService;
+
+    @Autowired
+    AuthenticationManager authenticationManager;
+
+    @Autowired
+    JwtUtil jwtUtil;
 
     @GetMapping(value = {"/", ""})
     public String sayHello() {
-        return "Welcome to Spring Shopping Mall";
-    }
-
-    @PostMapping("/authenticate")
-    public String getJwtToken(@RequestBody User user) {
-        System.out.println(user);
-        return "hj1b23hjb123bjk13.kjhjb13hj1b3b2hb12h3b12312hj3bh12b3j.b56b456b46jbk3k";
+        return "<h1>Welcome to Spring Shopping Mall</>";
     }
 
     @GetMapping(value = {"/user"})
     public String helloUser() {
         return "Welcome User";
+    }
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticateRequest authenticateRequest) throws Exception {
+
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            authenticateRequest.getUsername(),
+                            authenticateRequest.getPassword()));
+        } catch (BadCredentialsException e) {
+            throw new Exception("Incorrect username and password", e);
+        }
+        //Authentication Successful
+
+        UserDetails userDetails = myUserDetailService
+                .loadUserByUsername(authenticateRequest.getUsername());
+        final String jwt = jwtUtil.generateToken(userDetails);
+
+        return ResponseEntity.ok(new AuthenticationResponse(jwt));
+
     }
 }

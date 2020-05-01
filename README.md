@@ -5,12 +5,13 @@ MicroServices planned are - Accounts MicroService, Product MicroService, Cart Mi
 I am focusing mostly on the APIs for the backend.
 
 ### Technologies incorporated so far:
-1. Spring Boot
-2. Spring MVC
-3. Spring Data JPA
-4. Docker Containers
+1. Docker
+2. Spring Boot
+3. Spring MVC
+4. Spring Data JPA
 5. Spring Cache
 6. Spring Security
+
 
 ### To implement:
 1. JWT Access Tokens
@@ -37,14 +38,14 @@ It is created so the containers can resolve each other with container name witho
 
 ##### TO USE DATABASE:
 
-######To start or stop mysqlCon container:
+#####To start or stop mysqlCon container:
 `docker start mysqlCon`<br>
 `docker stop mysqlCon`
 
 ###### To login to mysqlCon container
 `docker exec -it mysqlCon mysql -uroot -p`
 
-Note: Database connection string is `spring.datasource.url=jdbc:mysql://mysqlCon:3306/shopping_app_frontend_db?useSSL=false&allowPublicKeyRetrieval=true`
+**Note:** Database connection string is `spring.datasource.url=jdbc:mysql://mysqlCon:3306/shopping_app_frontend_db?useSSL=false&allowPublicKeyRetrieval=true`
       Database password for user root is root
 
 
@@ -59,11 +60,11 @@ Note: Database connection string is `spring.datasource.url=jdbc:mysql://mysqlCon
 
 Go to http://localhost:8082/ to access the application
 
-######To start or stop frontCon container:
+#####To start or stop frontCon container:
 `docker start frontCon`<br>
 `docker stop frontCon`
 
-Note: Make sure there is only 1 main() in the project. Comment the other main()s if needed.
+**Note:** Make sure there is only 1 main() in the project. Comment the other main()s if needed.
 Ideally there should be 1 microservice per project, not multiple like in this project.
 
 
@@ -72,12 +73,12 @@ Ideally there should be 1 microservice per project, not multiple like in this pr
 `docker --help`      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Full help  <br>
 `docker COMMAND --help`    COMMAND specific help
 
-###### operating on images
+###### operating on Images
 `docker build -f DockerFileName -t imageName .`  Create image using Dockerfile<br>
 `docker images`                                  <br>
 `docker image rm -f imageName `  OR `docker rmi imageName1 imageName2`                <br>
 
-###### operating on containers
+###### operating on Containers
 `docker run -p hostPort:dockerExposedPort --name=containerName -d imageName` Create container using image <br>
 `docker start containerName`                     <br>
 `docker restart containerName`                   <br>
@@ -87,3 +88,6 @@ Ideally there should be 1 microservice per project, not multiple like in this pr
 `docker rename containerName`                    <br>
 `docker ps`                                      <br>
 `docker ps -a `                                  <br>
+`docker stats containerName`                     <br>
+`docker logs containerName`                      <br>
+`docker exec -it containerName bash`             <br>

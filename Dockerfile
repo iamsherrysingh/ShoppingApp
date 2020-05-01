@@ -1,5 +1,5 @@
 FROM openjdk:latest
-ADD target/ShoppingApp-0.0.1-SNAPSHOT.jar FrontController.jar
+ADD target/ShoppingApp-0.1.jar FrontController.jar
 EXPOSE 8082
 #ENTRYPOINT ["java","-jar","FrontController.jar"]
 

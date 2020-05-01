@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.sherry</groupId>
     <artifactId>ShoppingApp</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1</version>
     <name>ShoppingApp</name>
     <description>Shopping Application built using Spring Boot</description>
 
@@ -19,6 +19,14 @@
     </properties>
 
     <dependencies>
+
+        <!-- Spring Dev Tools -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -67,6 +75,21 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
         </dependency>
+
+        <!-- JWT - Create and Parse JWTs-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+
+        <!--   -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+
 
         <!-- Thymeleaf for HTML page to upload image -->
         <dependency>

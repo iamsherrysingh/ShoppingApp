@@ -12,15 +12,17 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
-    MyUserDetailManager userService;
+    MyUserDetailManager myUserDetailManager;
 
     @GetMapping("/listallusers")
     public List<User> listAllUsers() {
-        return userService.getUsers();
+        return myUserDetailManager.getUsers();
     }
 
     @PostMapping("/adduser")
     public void addUser(@RequestBody User user) {
-        userService.createUser(user);
+        myUserDetailManager.createUser(user);
     }
+
+
 }
