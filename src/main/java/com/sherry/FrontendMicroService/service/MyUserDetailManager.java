@@ -6,15 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
-@Service
+@Component
 public class MyUserDetailManager implements UserDetailsManager {
     @Autowired
     UserDAO userDAO;
+
+    @Autowired
+    MyUserDetailService myUserDetailService;
 
     /**
      * Create a new user with the supplied details.
@@ -70,6 +73,11 @@ public class MyUserDetailManager implements UserDetailsManager {
         return true;
     }
 
+
+    public List<User> getUsers() {
+        return userDAO.findAll();
+    }
+
     /**
      * Locates the user based on the username. In the actual implementation, the search
      * may possibly be case sensitive, or case insensitive depending on how the
@@ -84,14 +92,6 @@ public class MyUserDetailManager implements UserDetailsManager {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user = userDAO.findById(username);
-        if (user.isPresent()) {
-            return user.get();
-        }
-        throw new UsernameNotFoundException("Username " + username + " not found. Please check the username and try again");
-    }
-
-    public List<User> getUsers() {
-        return userDAO.findAll();
+        return myUserDetailService.loadUserByUsername(username);
     }
 }

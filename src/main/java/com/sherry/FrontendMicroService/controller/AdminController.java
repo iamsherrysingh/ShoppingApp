@@ -12,20 +12,17 @@ import java.util.List;
 public class AdminController {
 
     @Autowired
-    MyUserDetailManager userService;
+    MyUserDetailManager myUserDetailManager;
 
     @GetMapping("/listallusers")
     public List<User> listAllUsers() {
-        return userService.getUsers();
+        return myUserDetailManager.getUsers();
     }
 
     @PostMapping("/adduser")
     public void addUser(@RequestBody User user) {
-        userService.createUser(user);
+        myUserDetailManager.createUser(user);
     }
 
-    @GetMapping("/authenticate")
-    public String getJwtToken() {
-        return "hj1b23hjb123bjk13.kjhjb13hj1b3b2hb12h3b12312hj3bh12b3j.b56b456b46jbk3k";
-    }
+
 }

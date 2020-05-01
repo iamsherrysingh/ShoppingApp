@@ -5,12 +5,13 @@ MicroServices planned are - Accounts MicroService, Product MicroService, Cart Mi
 I am focusing mostly on the APIs for the backend.
 
 ### Technologies incorporated so far:
-1. Spring Boot
-2. Spring MVC
-3. Spring Data JPA
-4. Docker Containers
+1. Docker
+2. Spring Boot
+3. Spring MVC
+4. Spring Data JPA
 5. Spring Cache
 6. Spring Security
+
 
 ### To implement:
 1. JWT Access Tokens
