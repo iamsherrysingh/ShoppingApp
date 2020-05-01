@@ -72,12 +72,12 @@ Ideally there should be 1 microservice per project, not multiple like in this pr
 `docker --help`      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Full help  <br>
 `docker COMMAND --help`    COMMAND specific help
 
-###### operating on images
+###### operating on Images
 `docker build -f DockerFileName -t imageName .`  Create image using Dockerfile<br>
 `docker images`                                  <br>
 `docker image rm -f imageName `  OR `docker rmi imageName1 imageName2`                <br>
 
-###### operating on containers
+###### operating on Containers
 `docker run -p hostPort:dockerExposedPort --name=containerName -d imageName` Create container using image <br>
 `docker start containerName`                     <br>
 `docker restart containerName`                   <br>
@@ -87,3 +87,6 @@ Ideally there should be 1 microservice per project, not multiple like in this pr
 `docker rename containerName`                    <br>
 `docker ps`                                      <br>
 `docker ps -a `                                  <br>
+`docker stats containerName`                     <br>
+`docker logs containerName`                      <br>
+`docker exec -it containerName bash`             <br>
