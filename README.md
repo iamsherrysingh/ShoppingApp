@@ -10,12 +10,10 @@ I am focusing mostly on the APIs for the backend.
 3. Spring MVC
 4. Spring Data JPA
 5. Spring Cache
-6. Spring Security
-
+6. Spring Security (Authentication and JWT based Authorization)
 
 ### To implement:
-1. JWT Access Tokens
-2. Photo Upload
+1. Photo Upload
 
 
 This project contains all the microservices separated in packages with their own configuration, sql scripts, application launch class,and can deployed on different servers without much effort.
@@ -38,7 +36,7 @@ It is created so the containers can resolve each other with container name witho
 
 ##### TO USE DATABASE:
 
-#####To start or stop mysqlCon container:
+To start or stop mysqlCon container: <br>
 `docker start mysqlCon`<br>
 `docker stop mysqlCon`
 
@@ -60,7 +58,7 @@ It is created so the containers can resolve each other with container name witho
 
 Go to http://localhost:8082/ to access the application
 
-#####To start or stop frontCon container:
+To start or stop frontCon container: <br>
 `docker start frontCon`<br>
 `docker stop frontCon`
 
