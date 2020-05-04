@@ -79,6 +79,7 @@ Ideally there should be 1 microservice per project, not multiple like in this pr
 ###### operating on Containers
 `docker run -p hostPort:dockerExposedPort --name=containerName -d imageName` Create container using image <br>
 `docker start containerName`                     <br>
+`docker start $(docker ps -a -q)`   Start all containers<br>
 `docker restart containerName`                   <br>
 `docker stop containerName`                      <br>
 `docker kills containerName`                     <br>
@@ -89,3 +90,13 @@ Ideally there should be 1 microservice per project, not multiple like in this pr
 `docker stats containerName`                     <br>
 `docker logs containerName`                      <br>
 `docker exec -it containerName bash`             <br>
+
+## Ignore the following if you are just setting up this project
+
+Setup MSSQL in docker container <br>
+`docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Password@123" -p 1433:1433 --name=mssql -d mcr.microsoft.com/mssql/server:2019-latest`
+
+Download MS SMMS (or Heidi SQL) and login using the following credentials:  <br>
+`Server:   localhost,1433`                       <br>
+`Username: sa`                                   <br>
+`Password: Password@123`                         <br>
