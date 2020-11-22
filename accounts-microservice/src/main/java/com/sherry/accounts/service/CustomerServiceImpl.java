@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
-public class CustomerServiceImpl implements customerService {
+public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     CustomerDAO customerDAO;
@@ -55,6 +55,7 @@ public class CustomerServiceImpl implements customerService {
 
     @Override
     public boolean addCustomer(Customer customer) {
+    	customer.setCustomerName(customer.getCustomerName().trim());
     	if(validatePassword(customer) 
     			&& getCustomerByCustomerName(customer.getCustomerName())
     					.getCustomerName() == null) {
@@ -82,7 +83,8 @@ public class CustomerServiceImpl implements customerService {
     	Matcher matcher= pattern.matcher(customer.getPassword());
 
 		if(customer.getPassword().length() < 8
-				|| customer.getPassword().contains(customer.getCustomerName()) ) 
+				|| customer.getPassword().toLowerCase()
+						.contains(customer.getCustomerName().toLowerCase()) ) 
 			return false;  
 		if(matcher.matches() == false) //Provided password does not match the regex requirements
 			return false;

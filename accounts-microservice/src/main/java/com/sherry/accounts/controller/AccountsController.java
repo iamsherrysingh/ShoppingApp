@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sherry.accounts.model.Customer;
-import com.sherry.accounts.service.customerService;
+import com.sherry.accounts.service.CustomerService;
 
 @RestController
 @RequestMapping("/accounts")
 public class AccountsController {
 
     @Autowired
-    customerService customerService;
+    CustomerService customerService;
 
     @GetMapping("/customers")
     public List<Customer> listCustomers() {

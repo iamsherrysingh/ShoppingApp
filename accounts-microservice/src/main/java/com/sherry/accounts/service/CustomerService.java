@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.sherry.accounts.model.Customer;
 
-public interface customerService {
+public interface CustomerService {
     /**
      * checks if the userName and password combo is correct
      *
