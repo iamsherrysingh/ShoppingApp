@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class CustomerServiceImpl implements customerService {
@@ -52,12 +54,38 @@ public class CustomerServiceImpl implements customerService {
     }
 
     @Override
-    public void addCustomer(Customer customer) {
-        customerDAO.save(customer);
+    public boolean addCustomer(Customer customer) {
+    	if(validatePassword(customer) 
+    			&& getCustomerByCustomerName(customer.getCustomerName())
+    					.getCustomerName() == null) {
+    		customerDAO.save(customer);
+    		return true;
+    	}
+    
+    	return false;
     }
 
     @Override
-    public void deleteCustomer(String customerName) {
-        customerDAO.delete(getCustomerByCustomerName(customerName));
+    public boolean deleteCustomer(String customerName) {
+    	if(getCustomerByCustomerName(customerName)
+    					.getCustomerName() != null) {
+    		customerDAO.delete(getCustomerByCustomerName(customerName));
+    		return true;
+    	}
+    	return false;
     }
+
+	@Override
+	public boolean validatePassword(Customer customer) {
+    	String patternString= "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$";
+    	Pattern pattern= Pattern.compile(patternString);
+    	Matcher matcher= pattern.matcher(customer.getPassword());
+
+		if(customer.getPassword().length() < 8
+				|| customer.getPassword().contains(customer.getCustomerName()) ) 
+			return false;  
+		if(matcher.matches() == false) //Provided password does not match the regex requirements
+			return false;
+		return true;
+	}
 }

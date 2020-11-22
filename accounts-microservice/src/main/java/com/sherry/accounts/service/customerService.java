@@ -2,6 +2,8 @@ package com.sherry.accounts.service;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.RequestBody;
+
 import com.sherry.accounts.model.Customer;
 
 public interface customerService {
@@ -18,8 +20,10 @@ public interface customerService {
 
     public Customer getCustomerByCustomerName(String userName);
 
-    public void addCustomer(Customer customer);
+    public boolean addCustomer(Customer customer);
 
-    public void deleteCustomer(String userName);
+    public boolean deleteCustomer(String userName);
+    
+    public boolean validatePassword(@RequestBody Customer customer);
 
 }
