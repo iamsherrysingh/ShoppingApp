@@ -47,7 +47,9 @@ public class AccountsController {
 
     @PostMapping("/customer")
     public boolean addCustomer(@RequestBody Customer customer) {
-    	if(validatePassword(customer)) {
+    	
+    	if(validatePassword(customer) 
+    			&& getCustomerByCustomerName(customer.getCustomerName()).getCustomerName() == null) {
     		customerService.addCustomer(customer);
     		return true;
     	}
