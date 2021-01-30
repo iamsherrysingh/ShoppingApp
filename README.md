@@ -25,6 +25,17 @@ It is created so the containers can resolve each other with container name witho
 
 
 ## MySQL docker setup guide
+
+Quick way to setup DB server: I have committed my Docker mysqlCon container to an image iamsherrysingh/ecommerce-db-image .
+The above image contains user setup.
+To use the aforementioned image to create a Docker container:
+
+1. `docker pull iamsherrysingh/ecommerce-db-image`
+2. `docker run -p 3306:3306 --name=mysqlCon --net=my-network -d iamsherrysingh/ecommerce-db-image`
+
+At this point, mysqlCon container is up and running. You can access the DB server now. Now restore DB data using a DB app of your choice. DB dump can be found in the source code.
+If you'd like to get your hands dirty and create your MySQL server from scratch, follow the following commands:
+
 ##### INITIAL SETUP:
 
 1. `docker pull mysql:latest`
