@@ -103,9 +103,9 @@ Ideally there should be 1 microservice per project, not multiple like in this pr
 `docker exec -it containerName bash`             <br>
 
 ##### Docker Hub commands
-`docker pull imageName`                          <br>
-`docker commit containerName iamsherrysingh/imageName` Create image using container <br>
-`docker push iamsherrysingh/imageName`   Push image to Docker Hub <br>
+`docker pull imageName` Pull image from Docker Hub                                    <br>
+`docker commit containerName iamsherrysingh/imageName` Create image using container   <br>
+`docker push iamsherrysingh/imageName`   Push image to Docker Hub                     <br>
 
 ## Ignore the following if you are just setting up this project
 
