@@ -6,4 +6,10 @@
     <version>0.1</version>
   </parent>
   <artifactId>product-microservice</artifactId>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.springframework.kafka</groupId>
+  		<artifactId>spring-kafka</artifactId>
+  	</dependency>
+  </dependencies>
 </project>

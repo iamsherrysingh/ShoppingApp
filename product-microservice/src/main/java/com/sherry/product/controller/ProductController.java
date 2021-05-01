@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.sherry.product.model.Product;
+import com.sherry.product.service.ProducerService;
 import com.sherry.product.service.ProductService;
 
 import java.util.List;
@@ -15,12 +16,26 @@ public class ProductController {
     //private final StorageService storageService;
     @Autowired
     ProductService productService;
+    
+    @Autowired
+    ProducerService producerService;
 
     /*@Autowired
     public ProductController(StorageService storageService) {
         this.storageService = storageService;
     }*/
 
+    /**
+     * The message will be published to this endpoint, and then handled by our producer.
+     * Then, our consumer will catch and handle it the way we set it up  by logging to the console.
+     * 
+     * @param message message that would be published to the Kafka Bus
+     */
+    @PostMapping("/publish")
+    public void sendMessageToKafkaTopic(@RequestParam("message") String message) {
+        this.producerService.sendMessage(message);
+    }
+    
     @GetMapping("/greaterthan/{id}")
     public List<Product> sortByPriceGreaterThan(@PathVariable("id") Double minPrice) {
         return productService.sortByPriceGreaterThan(minPrice);
