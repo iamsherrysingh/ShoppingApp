@@ -5,46 +5,28 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
 @Table(name = "customer")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer {
 
-    @Id
-    @Column(name = "customer_name")
-    private String customerName;
+	@Id
+	@Column(name = "customer_name")
+	private String customerName;
 
-    @Column(name = "password")
-    private String password;
+	@Column(name = "password")
+	private String password;
 
-    public Customer() {
-    }
-
-    public Customer(String customerName, String password) {
-        this.customerName = customerName;
-        this.password = password;
-    }
-
-    public String getCustomerName() {
-        return customerName;
-    }
-
-    public void setCustomerName(String userName) {
-        this.customerName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "customerName='" + customerName + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "Customer{" + "customerName='" + customerName + '\'' + ", password='" + password + '\'' + '}';
+	}
 }
