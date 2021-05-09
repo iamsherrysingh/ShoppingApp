@@ -40,7 +40,7 @@ public class AccountsController {
 		EventGenerator eventGenerator = new EventGenerator();
 
 		Properties props = new Properties();
-		props.put("bootstrap.servers", "192.168.0.101:9092");
+		props.put("bootstrap.servers", "localhost:9092");
 		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
@@ -49,40 +49,21 @@ public class AccountsController {
 		for (Customer customer : customerService.getCustomers()) {
 			String key = extractKey(customer);
 			String value = extractValue(customer);
-
+			System.out.println("Kafka Producer ==>" + key + " " + value);
 			ProducerRecord<String, String> record = new ProducerRecord<String, String>("users", key, value);
 			producer.send(record);
 
 		}
-//		producer.close();
-		return new ResponseEntity<>(HttpStatus.ACCEPTED);
-	}
-
-	@PostMapping("/producemillion")
-	public ResponseEntity<HttpStatus> startProducingMillionEvents() throws InterruptedException {
-
-		Properties props = new Properties();
-		props.put("bootstrap.servers", "192.168.0.101:9092");
-		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-
-		Producer<String, String> producer = new KafkaProducer<>(props);
-
-		for (int i = 0; i < 1000000; i++) {
-			ProducerRecord<String, String> record = new ProducerRecord<String, String>("users", " " + i, "str");
-			producer.send(record);
-
-		}
-//		producer.close();
+		producer.close();
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 
 	private static String extractValue(Customer customer) {
-		return customer.getCustomerName();
+		return customer.getPassword();
 	}
 
 	private static String extractKey(Customer customer) {
-		return customer.getPassword();
+		return customer.getCustomerName();
 	}
 
 	/*
