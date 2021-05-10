@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sherry.accounts.EventGenerator;
 import com.sherry.accounts.model.Customer;
 import com.sherry.accounts.model.Product;
 import com.sherry.accounts.model.User;
@@ -38,8 +37,6 @@ public class AccountsController {
 
 	@PostMapping("/produce")
 	public ResponseEntity<HttpStatus> producer() throws InterruptedException {
-
-		EventGenerator eventGenerator = new EventGenerator();
 
 		Properties props = new Properties();
 		props.put("bootstrap.servers", "localhost:9092");
@@ -62,8 +59,6 @@ public class AccountsController {
 
 	@PostMapping("/producecustomers")
 	public ResponseEntity<HttpStatus> startProducingEvents() throws InterruptedException {
-
-		EventGenerator eventGenerator = new EventGenerator();
 
 		Properties props = new Properties();
 		props.put("bootstrap.servers", "localhost:9092");
