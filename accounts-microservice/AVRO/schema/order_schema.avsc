@@ -1,20 +1,19 @@
 {
 "type":"record",
 "namespace":"com.sherry.accounts.model",
-"name":"User",
+"name":"Order",
 "fields":[
 			{
 			"name":"userId",
 			"type":"string"
 			},
 			{
-			"name":"userName",
-			"type":"string"
+			"name":"nbOfItems",
+			"type":"int"
 			},
 			{
-			"name":"dateOfBirth",
-			"type":"int",
-			"logicaltype":"date"
+			"name":"totalAmount",
+			"type":"float"
 			}
 		]
 }
