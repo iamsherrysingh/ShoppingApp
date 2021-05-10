@@ -1,0 +1,20 @@
+{
+"type":"record",
+"namespace":"com.sherry.accounts.model",
+"name":"User",
+"fields":[
+			{
+			"name":"userId",
+			"type":"string"
+			},
+			{
+			"name":"userName",
+			"type":"string"
+			},
+			{
+			"name":"dateOfBirth",
+			"type":"int",
+			"logicaltype":"date"
+			}
+		]
+}

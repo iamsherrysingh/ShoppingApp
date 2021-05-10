@@ -56,8 +56,6 @@
 			<artifactId>kafka-avro-serializer</artifactId>
 			<version>5.2.0</version>
 		</dependency>
-		
-
 
 		<dependency>
 			<groupId>org.apache.avro</groupId>

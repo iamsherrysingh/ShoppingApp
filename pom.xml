@@ -120,5 +120,6 @@
     	<module>accounts-microservice</module>
     	<module>frontend-microservice</module>
     	<module>product-microservice</module>
+    	<module>frauddetection-microservice</module>
     </modules>
 </project>
