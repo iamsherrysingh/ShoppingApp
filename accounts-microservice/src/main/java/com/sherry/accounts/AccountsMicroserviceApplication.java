@@ -42,6 +42,7 @@ public class AccountsMicroserviceApplication {
 		KafkaConsumer<User, Product> consumer2 = new KafkaConsumer<>(props2);
 		consumer2.subscribe(Arrays.asList("user-tracking-avro"));
 
+		// Consume Events
 		while (true) {
 			ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
 			ConsumerRecords<User, Product> records2 = consumer2.poll(Duration.ofMillis(100));
