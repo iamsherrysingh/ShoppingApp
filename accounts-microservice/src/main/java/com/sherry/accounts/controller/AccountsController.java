@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sherry.accounts.EventGenerator;
 import com.sherry.accounts.model.Customer;
+import com.sherry.accounts.model.Product;
+import com.sherry.accounts.model.User;
 import com.sherry.accounts.service.CustomerService;
 
 @RestController
@@ -32,6 +34,30 @@ public class AccountsController {
 	@GetMapping("/customers")
 	public List<Customer> listCustomers() {
 		return customerService.getCustomers();
+	}
+
+	@PostMapping("/produce")
+	public ResponseEntity<HttpStatus> producer() throws InterruptedException {
+
+		EventGenerator eventGenerator = new EventGenerator();
+
+		Properties props = new Properties();
+		props.put("bootstrap.servers", "localhost:9092");
+		props.put("key.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer");
+		props.put("value.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer");
+		props.put("schema.registry.url", "http://localhost:8081");
+
+		Producer<User, Product> producer = new KafkaProducer<>(props);
+
+		User key = new User((new Double(Math.random())).toString(), "Sherry", 120294);
+		Product value = new Product(1, "4k IPS 32\" Monitor");
+		System.out.println("Kafka Producer ==>" + key + " " + value);
+		ProducerRecord<User, Product> record = new ProducerRecord<User, Product>("user-tracking-avro", key, value);
+		producer.send(record);
+
+		producer.close();
+		return new ResponseEntity<>(HttpStatus.ACCEPTED);
+
 	}
 
 	@PostMapping("/producecustomers")
