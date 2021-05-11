@@ -32,13 +32,15 @@ public class FraudDetectionApplication {
 		StreamsBuilder streamsBuilder = new StreamsBuilder();
 
 		KStream<String, Order> stream = streamsBuilder.stream("payments");
-		stream.peek((transactionId, order) -> System.out.println(order))
-				.filter((transactionId, order) -> !order.getUserId().toString().equals(""))
-				.filter((transactionId, order) -> order.getNbOfItems() < 1000)
-				.filter((transactionId, order) -> order.getTotalAmount() <= 10000).mapValues((order) -> {
-					order.setUserId(String.valueOf(order.getUserId()).toUpperCase());
-					return order;
-				}).peek((transactionId, order) -> System.out.println(order)).to("validated-payments");
+		stream
+//		.peek((transactionId, order) -> System.out.println(order))
+//				.filter((transactionId, order) -> !order.getUserId().toString().equals(""))
+//				.filter((transactionId, order) -> order.getNbOfItems() < 1000)
+//				.filter((transactionId, order) -> order.getTotalAmount() <= 10000).mapValues((order) -> {
+//					order.setUserId(String.valueOf(order.getUserId()).toUpperCase());
+//					return order;})
+//				.peek((transactionId, order) -> System.out.println(order))
+				.to("validated-payments");
 
 		Topology topology = streamsBuilder.build();
 
