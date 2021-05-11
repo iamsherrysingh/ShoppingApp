@@ -2,6 +2,8 @@ package com.sherry.frauddetection;
 
 import java.util.Properties;
 
+import javax.persistence.Cacheable;
+
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;

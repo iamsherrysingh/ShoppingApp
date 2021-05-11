@@ -6,6 +6,8 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.streams.StreamsConfig;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sherry.frauddetection.model.Customer;
 import com.sherry.frauddetection.model.Order;
 
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
@@ -55,15 +58,31 @@ public class FraudDetectionController {
 	public String msdsad() {
 		return "Hello";
 	}
+	
+	@GetMapping("/ok200")
+	public ResponseEntity<Customer> method2() {
+		Customer customer = new Customer("Raman", "crop");
+		return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+	}
 
 	@GetMapping("/accepted202")
 	public ResponseEntity<HttpStatus> method1() {
 		return new ResponseEntity<>(HttpStatus.ACCEPTED);
 	}
 
-	@GetMapping("/accepted202")
-	public ResponseEntity<HttpStatus> method2() {
-		return new ResponseEntity<>(HttpStatus.ACCEPTED);
+	@GetMapping("/badrequest400")
+	public ResponseEntity<HttpStatus> method5() {
+		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
+	
+	@GetMapping("/notfound404")
+	public ResponseEntity<HttpStatus> method3() {
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-}
+	@GetMapping("/internalservererror500")
+	public ResponseEntity<HttpStatus> method4() {
+		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
+};
