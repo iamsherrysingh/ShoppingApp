@@ -13,9 +13,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.sherry.frauddetection.model.Order;
+import com.sherry.frauddetection.model.serde.OrderSerde;
 
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -29,20 +29,20 @@ public class FraudDetectionApplication {
 		Properties props = new Properties();
 		props.put(StreamsConfig.APPLICATION_ID_CONFIG, "fraud-detection-application");
 		props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-		props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
-		props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
+		props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+		props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, OrderSerde.class);
 		props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
 
 		StreamsBuilder streamsBuilder = new StreamsBuilder();
 
 		KStream<String, Order> stream = streamsBuilder.stream("payments");
-//		stream.peek(FraudDetectionApplication::printOnEnter)
+		stream.peek(FraudDetectionApplication::printOnEnter)
 //				.filter((transactionId, order) -> !order.getUserId().toString().equals(""))
 //				.filter((transactionId, order) -> order.getNbOfItems() < 1000)
 //				.filter((transactionId, order) -> order.getTotalAmount() <= 10000).mapValues((order) -> {
 //					order.setUserId(String.valueOf(order.getUserId()).toUpperCase());
 //					return order;})
-//				.peek(FraudDetectionApplication::printOnExit).to("validated-payments");
+				.peek(FraudDetectionApplication::printOnExit).to("validated-payments");
 
 		Topology topology = streamsBuilder.build();
 

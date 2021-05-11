@@ -5,7 +5,6 @@ import java.util.Properties;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.StreamsConfig;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sherry.frauddetection.model.Order;
 
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 
 @RestController
 @RequestMapping("/frauddetection")
@@ -38,14 +36,14 @@ public class FraudDetectionController {
 		props.put("value.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer");
 		props.put("schema.registry.url", "http://localhost:8081");
 
-		Producer<Serdes, SpecificAvroSerde> producer = new KafkaProducer<>(props);
+		Producer<String, Order> producer = new KafkaProducer<>(props);
 
 		for (int i = 0; i < 5; i++) {
 //			Serde<String> transactionId = Serdes.String();
 
 			String transactionId = String.valueOf(i);
 			Order order = new Order(transactionId, (int) (Math.random() * Double.valueOf(i)), 1.0f);
-			ProducerRecord<Serdes, SpecificAvroSerde> record = new ProducerRecord<>("payments", null, null);
+			ProducerRecord<String, Order> record = new ProducerRecord<>("payments", transactionId, order);
 			producer.send(record);
 		}
 		producer.close();
@@ -57,4 +55,15 @@ public class FraudDetectionController {
 	public String msdsad() {
 		return "Hello";
 	}
+
+	@GetMapping("/accepted202")
+	public ResponseEntity<HttpStatus> method1() {
+		return new ResponseEntity<>(HttpStatus.ACCEPTED);
+	}
+
+	@GetMapping("/accepted202")
+	public ResponseEntity<HttpStatus> method2() {
+		return new ResponseEntity<>(HttpStatus.ACCEPTED);
+	}
+
 }
