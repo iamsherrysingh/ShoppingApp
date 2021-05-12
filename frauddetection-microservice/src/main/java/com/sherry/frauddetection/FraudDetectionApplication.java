@@ -10,7 +10,7 @@ import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.KStream;
-//import org.apache.log4j.Logger;
+import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -31,13 +31,13 @@ public class FraudDetectionApplication {
 		Properties props = new Properties();
 		props.put(StreamsConfig.APPLICATION_ID_CONFIG, "fraud-detection-application");
 		props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-		props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
-		props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+		props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.StringSerde.class.getName());
+		props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, "com.sherry.frauddetection.model.serde.OrderSerde");
 		props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
 
 		StreamsBuilder streamsBuilder = new StreamsBuilder();
 
-		KStream<String, String> stream = streamsBuilder.stream("payments");
+		KStream<String, Order> stream = streamsBuilder.stream("payments");
 		stream.peek(FraudDetectionApplication::printOnEnter)
 //				.filter((transactionId, order) -> !order.getUserId().toString().equals(""))
 //				.filter((transactionId, order) -> order.getNbOfItems() < 1000)
@@ -55,15 +55,15 @@ public class FraudDetectionApplication {
 		Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
 	}
 
-	private static void printOnEnter(String transactionId, String order) {
+	private static void printOnEnter(String transactionId, Order order) {
 		log.info("*******************");
-		log.info("Entering stream with Transaction ID" + transactionId);
+		log.info("Entering stream with Transaction ID: " + transactionId);
 		log.info("and order: " + order);
 	}
 
-	private static void printOnExit(String transactionId, String order) {
+	private static void printOnExit(String transactionId, Order order) {
 		log.info("*******************");
-		log.info("Exiting stream with Transaction ID" + transactionId);
+		log.info("Exiting stream with Transaction ID: " + transactionId);
 		log.info("and order: " + order);
 	}
 
