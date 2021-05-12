@@ -25,7 +25,6 @@ import lombok.extern.log4j.Log4j2;
 public class FraudDetectionApplication {
 //	private static Logger LOG = LoggerFactory.getLogger(FraudDetectionApplication.class);
 
-	//@formatter:off
 	public static void main(String[] args) {
 		SpringApplication.run(FraudDetectionApplication.class, args);
 
@@ -56,16 +55,16 @@ public class FraudDetectionApplication {
 		Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
 	}
 
-	private static void printOnEnter(String transactionId, String transactionId2) {
+	private static void printOnEnter(String transactionId, String order) {
 		log.info("*******************");
 		log.info("Entering stream with Transaction ID" + transactionId);
-		log.info("and order: " + transactionId2);
+		log.info("and order: " + order);
 	}
 
-	private static void printOnExit(String transactionId, String transactionId2) {
+	private static void printOnExit(String transactionId, String order) {
 		log.info("*******************");
 		log.info("Exiting stream with Transaction ID" + transactionId);
-		log.info("and order: " + transactionId2);
+		log.info("and order: " + order);
 	}
 
 }

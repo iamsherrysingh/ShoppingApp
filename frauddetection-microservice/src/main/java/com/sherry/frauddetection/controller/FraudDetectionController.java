@@ -35,8 +35,8 @@ public class FraudDetectionController {
 		props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
 
 //		props.put("bootstrap.servers", "localhost:9092");
-		props.put("key.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer");
-		props.put("value.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer");
+		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 		props.put("schema.registry.url", "http://localhost:8081");
 
 		Producer<String, String> producer = new KafkaProducer<>(props);
