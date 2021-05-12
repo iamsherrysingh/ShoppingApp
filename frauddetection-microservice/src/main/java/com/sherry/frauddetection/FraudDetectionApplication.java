@@ -25,19 +25,20 @@ import lombok.extern.log4j.Log4j2;
 public class FraudDetectionApplication {
 //	private static Logger LOG = LoggerFactory.getLogger(FraudDetectionApplication.class);
 
+	//@formatter:off
 	public static void main(String[] args) {
 		SpringApplication.run(FraudDetectionApplication.class, args);
 
 		Properties props = new Properties();
 		props.put(StreamsConfig.APPLICATION_ID_CONFIG, "fraud-detection-application");
 		props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-		props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-		props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, OrderSerde.class);
+		props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+		props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
 		props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
 
 		StreamsBuilder streamsBuilder = new StreamsBuilder();
 
-		KStream<String, Order> stream = streamsBuilder.stream("payments");
+		KStream<String, String> stream = streamsBuilder.stream("payments");
 		stream.peek(FraudDetectionApplication::printOnEnter)
 //				.filter((transactionId, order) -> !order.getUserId().toString().equals(""))
 //				.filter((transactionId, order) -> order.getNbOfItems() < 1000)
@@ -55,16 +56,16 @@ public class FraudDetectionApplication {
 		Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
 	}
 
-	private static void printOnEnter(String transactionId, Order order) {
+	private static void printOnEnter(String transactionId, String transactionId2) {
 		log.info("*******************");
 		log.info("Entering stream with Transaction ID" + transactionId);
-		log.info("and order: " + order);
+		log.info("and order: " + transactionId2);
 	}
 
-	private static void printOnExit(String transactionId, Order order) {
+	private static void printOnExit(String transactionId, String transactionId2) {
 		log.info("*******************");
 		log.info("Exiting stream with Transaction ID" + transactionId);
-		log.info("and order: " + order);
+		log.info("and order: " + transactionId2);
 	}
 
 }

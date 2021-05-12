@@ -36,17 +36,17 @@ public class FraudDetectionController {
 
 //		props.put("bootstrap.servers", "localhost:9092");
 		props.put("key.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer");
-		props.put("value.serializer", "com.sherry.frauddetection.model.serde.OrderSerializer");
+		props.put("value.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer");
 		props.put("schema.registry.url", "http://localhost:8081");
 
-		Producer<String, Order> producer = new KafkaProducer<>(props);
+		Producer<String, String> producer = new KafkaProducer<>(props);
 
 		for (int i = 0; i < 5; i++) {
 //			Serde<String> transactionId = Serdes.String();
 
 			String transactionId = String.valueOf(i);
 			Order order = new Order(transactionId, (int) (Math.random() * Double.valueOf(i)), 1.0f);
-			ProducerRecord<String, Order> record = new ProducerRecord<>("payments", transactionId, order);
+			ProducerRecord<String, String> record = new ProducerRecord<>("payments", transactionId, transactionId+transactionId);
 			producer.send(record);
 		}
 		producer.close();
