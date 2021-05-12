@@ -1,28 +1,13 @@
 package com.sherry.frauddetection;
 
-import com.google.gson.Gson;
-import com.sherry.frauddetection.model.Order;
-
 public class Playground {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Order order = new Order("id", 14, 786f);
-		System.out.println(order);
-
-		String jsonString = new Gson().toJson(order);
-		System.out.println(jsonString);
-
-		byte[] binary = jsonString.getBytes();
-		System.out.println(binary);
-
-		jsonString = new String(binary);
-		System.out.println(jsonString);
-
-		Gson gson = new Gson();
-		order = gson.fromJson(jsonString, Order.class);
-		System.out.println(order);
-
+		byte[] b= new byte[] {123, 34, 117, 115, 101, 114, 73, 100, 34, 58, 34, 105, 100, 49, 52, 34, 44, 34, 110, 98, 79, 102, 73, 116, 101, 109, 115, 34, 58, 49, 55, 44, 34, 116, 111, 116, 97, 108, 65, 109, 111, 117, 110, 116, 34, 58, 49, 46, 48, 125};
+		String s= new String(b);
+		
+		
+		System.out.println(s);
 	}
 
 }

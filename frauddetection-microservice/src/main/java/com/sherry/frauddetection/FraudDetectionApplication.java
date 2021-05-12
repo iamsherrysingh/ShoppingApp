@@ -2,28 +2,22 @@ package com.sherry.frauddetection;
 
 import java.util.Properties;
 
-import javax.persistence.Cacheable;
-
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.KStream;
-import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.sherry.frauddetection.model.Order;
-import com.sherry.frauddetection.model.serde.OrderSerde;
-
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @SpringBootApplication
 public class FraudDetectionApplication {
-//	private static Logger LOG = LoggerFactory.getLogger(FraudDetectionApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(FraudDetectionApplication.class, args);
@@ -40,7 +34,7 @@ public class FraudDetectionApplication {
 		KStream<String, Order> stream = streamsBuilder.stream("payments");
 		stream.peek(FraudDetectionApplication::printOnEnter)
 //				.filter((transactionId, order) -> !order.getUserId().toString().equals(""))
-//				.filter((transactionId, order) -> order.getNbOfItems() < 1000)
+				.filter((transactionId, order) -> order.getTotalAmount() < 10000)
 //				.filter((transactionId, order) -> order.getTotalAmount() <= 10000).mapValues((order) -> {
 //					order.setUserId(String.valueOf(order.getUserId()).toUpperCase());
 //					return order;})
