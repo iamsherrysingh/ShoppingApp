@@ -61,7 +61,7 @@ public class AccountsController {
 	public ResponseEntity<HttpStatus> startProducingEvents() throws InterruptedException {
 
 		Properties props = new Properties();
-		props.put("bootstrap.servers", "localhost:9092");
+		props.put("bootstrap.servers", "192.168.0.100:9092,localhost:9092");
 		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
@@ -71,7 +71,7 @@ public class AccountsController {
 			String key = extractKey(customer);
 			String value = extractValue(customer);
 			System.out.println("Kafka Producer ==>" + key + " " + value);
-			ProducerRecord<String, String> record = new ProducerRecord<String, String>("users", key, value);
+			ProducerRecord<String, String> record = new ProducerRecord<String, String>("topic1", key, value);
 			producer.send(record);
 
 		}
