@@ -1,23 +1,26 @@
 # Spring ShoppingApp
 
 I am creating a Shopping Application based on Microservices architecture.
-MicroServices planned are - Accounts MicroService, Product MicroService, Cart MicroService, Order MicroService, and a Shopping/FrontEnd MicroService
+MicroServices planned are - Accounts MicroService, Product MicroService, Frontend/Gateway Microservice, and a FraudDetection Microservice.
 I am focusing mostly on the APIs for the backend.
 
 ### Technologies incorporated so far:
 1. Docker
-2. Spring Boot
-3. Spring MVC
-4. Spring Data JPA
-5. Spring Cache
-6. Spring Security (Authentication and JWT based Authorization)
+2. Kafka
+3. Spring Boot
+4. Spring MVC
+5. Spring Data JPA
+6. Spring Cache
+7. Spring Security (Authentication and JWT based Authorization)
 
 ### To implement:
 1. Photo Upload
+2. Package sample DB data along with the sql image.
+3. 
 
 
-This project contains all the microservices separated in packages with their own configuration, sql scripts, application launch class,and can deployed on different servers without much effort.
-In the project's current state, these microservices can be spun up on just 1 server but at different ports.
+This project contains all the microservices separated in packages with their own configuration, sql scripts, docker-compose.yml file, application launch class,and can deployed on different servers without much effort. I am using a mono repo style of version control as the project for the sake of simplicity.
+In the project's current state, these microservices can be spun up on just one server but at different ports.
 
 ## Create a user defined bridge network
 It is created so the containers can resolve each other with container name without using --link <br>
@@ -33,8 +36,8 @@ To use the aforementioned image to create a Docker container:
 1. `docker pull iamsherrysingh/ecommerce-db-image`
 2. `docker run -p 3306:3306 --name=mysqlCon --net=my-network -d iamsherrysingh/ecommerce-db-image`
 
-At this point, mysqlCon container is up and running. You can access the DB server now. Now restore DB data using a DB app of your choice. DB dump can be found in the source code.
-If you'd like to get your hands dirty and create your MySQL server from scratch, follow the following commands:
+At this point, mysqlCon container is up and running. You can access the DB server now. Now restore DB data using a DB app of your choice. DB dump can be found in the source code. I some later point in time, I plan to package sample DB data along with the image.
+If you'd like to get your hands dirty and create your MySQL server from scratch, follow the commands listed below:
 
 ##### INITIAL SETUP:
 
@@ -58,14 +61,15 @@ To start or stop mysqlCon container: <br>
       Database password for user root is root
 
 
-## Shopping App Docker setup guide:
+## Shopping App Docker deployment guide:
 1. Install Docker
-2. Import project as Maven Project
-3. `run Maven clean, Maven install`
-4. `docker pull openjdk:latest`
-5. 'Dockerfile' is already in project root. Switch to project root.
-6. Run: `docker build -f .\Dockerfile -t frontcontroller .`
-7. `docker run -p 8082:8082 --name=frontCon --net=my-network frontcontroller`
+2. Clone the project using git https://github.com/iamsherrysingh/ShoppingApp.git
+3. Import project as Maven Project
+4. `run Maven clean, Maven install`
+5. `docker pull openjdk:latest`
+6. 'Dockerfile' is already in project root. Switch to project root.
+7. Run: `docker build -f .\Dockerfile -t frontcontroller .`
+8. `docker run -p 8082:8082 --name=frontCon --net=my-network frontcontroller`
 
 Go to http://localhost:8082/ to access the application
 
@@ -74,7 +78,7 @@ To start or stop frontCon container: <br>
 `docker stop frontCon`
 
 **Note:** Make sure there is only 1 main() in the project. Comment the other main()s if needed.
-Ideally there should be 1 microservice per project, not multiple like in this project.
+Ideally there should be 1 microservice per project, not multiple like in this project. All the microservices can be easily extracted into their own repos. I am using mono repo style of version control for the sake of simplicity.
 
 
 ## USEFUL DOCKER COMMANDS:
