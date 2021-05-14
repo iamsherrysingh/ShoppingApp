@@ -26,13 +26,13 @@ public class FraudDetectionController {
 	public ResponseEntity<HttpStatus> producer()  throws InterruptedException {
 
 		Properties props = new Properties();
-		props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-		props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
+		props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.0.100:9092");
+		props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://192.168.0.100:8081");
 
 //		props.put("bootstrap.servers", "localhost:9092");
 		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 		props.put("value.serializer", "com.sherry.frauddetection.model.serde.OrderSerializer");
-		props.put("schema.registry.url", "http://localhost:8081");
+		props.put("schema.registry.url", "http://192.168.0.100:8081");
 
 		Producer<String, Order> producer = new KafkaProducer<>(props);
 

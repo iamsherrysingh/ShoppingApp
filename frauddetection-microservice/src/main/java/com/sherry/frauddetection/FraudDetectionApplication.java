@@ -24,10 +24,10 @@ public class FraudDetectionApplication {
 
 		Properties props = new Properties();
 		props.put(StreamsConfig.APPLICATION_ID_CONFIG, "fraud-detection-application");
-		props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+		props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "192.168.0.100:9092");
 		props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.StringSerde.class.getName());
 		props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, "com.sherry.frauddetection.model.serde.OrderSerde");
-		props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://localhost:8081");
+		props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, "http://192.168.0.100:8081");
 
 		StreamsBuilder streamsBuilder = new StreamsBuilder();
 
