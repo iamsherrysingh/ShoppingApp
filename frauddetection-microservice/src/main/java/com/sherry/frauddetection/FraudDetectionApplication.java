@@ -33,7 +33,7 @@ public class FraudDetectionApplication {
 
 		KStream<String, Order> stream = streamsBuilder.stream("payments");
 		stream.peek(FraudDetectionApplication::printOnEnter)
-//				.filter((transactionId, order) -> !order.getUserId().toString().equals(""))
+				.filter((transactionId, order) -> !order.getUserId().toString().equals(""))
 				.filter((transactionId, order) -> order.getTotalAmount() < 10000)
 //				.filter((transactionId, order) -> order.getTotalAmount() <= 10000).mapValues((order) -> {
 //					order.setUserId(String.valueOf(order.getUserId()).toUpperCase());

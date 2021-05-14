@@ -39,10 +39,10 @@ public class AccountsController {
 	public ResponseEntity<HttpStatus> producer() throws InterruptedException {
 
 		Properties props = new Properties();
-		props.put("bootstrap.servers", "localhost:9092");
+		props.put("bootstrap.servers", "192.168.0.100:9092");
 		props.put("key.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer");
 		props.put("value.serializer", "io.confluent.kafka.serializers.KafkaAvroSerializer");
-		props.put("schema.registry.url", "http://localhost:8081");
+		props.put("schema.registry.url", "http://192.168.0.100:8081");
 
 		Producer<User, Product> producer = new KafkaProducer<>(props);
 
@@ -61,9 +61,10 @@ public class AccountsController {
 	public ResponseEntity<HttpStatus> startProducingEvents() throws InterruptedException {
 
 		Properties props = new Properties();
-		props.put("bootstrap.servers", "localhost:9092");
+		props.put("bootstrap.servers", "192.168.0.100:9092");
 		props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 		props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+//		props.put("schema.registry.url", "http://192.168.0.100:8081,http://localhost:8081");
 
 		Producer<String, String> producer = new KafkaProducer<>(props);
 
