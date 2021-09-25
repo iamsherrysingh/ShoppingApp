@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/login")
-public class LoginController {
+public class ResourceController {
 
     @Value("Hey there!")
     String hello;
