@@ -1,0 +1,13 @@
+package com.sherry.loginauthserver;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class LoginAuthServerApplicationTests {
+
+    @Test
+    void contextLoads() {
+    }
+
+}
