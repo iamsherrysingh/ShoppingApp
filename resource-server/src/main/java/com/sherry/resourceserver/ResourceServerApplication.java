@@ -1,4 +1,4 @@
-package com.sherry.loginauthserver;
+package com.sherry.resourceserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
