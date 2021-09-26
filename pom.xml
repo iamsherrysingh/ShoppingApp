@@ -39,5 +39,6 @@
     	<module>frontend-microservice</module>
     	<module>product-microservice</module>
     	<module>frauddetection-microservice</module>
+        <module>resource-server</module>
     </modules>
 </project>
