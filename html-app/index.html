@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <p>Hey there</p>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"
+        integrity="sha512-lTLt+W7MrmDfKam+r3D2LURu0F47a3QaW5nF0c6Hl0JDZ57ruei+ovbg7BrZ+0bjVJ5YgzsAWE+RreERbpPE1g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+        
+    
+    <script type="application/javascript">
+
+
+
+axios.get('http://webcode.me').then(resp => {
+
+    console.log(resp.data);
+});
+
+
+axios.get('http://localhost:8086/login/hello').then(resp => {
+
+console.log(resp.data);
+});
+
+
+        // axios.get('http://localhost:8086/login/hello', {
+        //     auth: {
+        //         username: 'root',
+        //         password: 'root'
+        //     }
+        // })
+        //     .then(response => {
+        //         console.log(response.data);
+        //     })
+        //     .catch(error => console.error(error));
+
+
+    </script>
+
+
+
+    <script src="jquery-3.6.0.js"></script>
+
+</body>
+
+</html>
